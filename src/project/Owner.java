@@ -8,7 +8,7 @@ class Owner extends JFrame
    Owner()
   {
       
-  setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+  setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
   setTitle("Welcome");
   setSize(400, 200);
    }

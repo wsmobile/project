@@ -29,6 +29,7 @@ public class HomePage {
 
         final JFrame frame = new JFrame("HomePage");
         //frame.setLocationRelativeTo(null);
+       
         final int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2);
         final int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2);
         frame.setLocation(x-150, y-150);
@@ -38,7 +39,7 @@ public class HomePage {
         final JTextField tempusername = new JTextField(10);
         final JPasswordField temppassword = new JPasswordField(10);
         
-
+ frame.getRootPane().setDefaultButton(loginButton);
         JPanel panel = new JPanel(new GridLayout(3, 2));
 
         panel.add(new JLabel("Enter username:"));
@@ -92,7 +93,8 @@ public class HomePage {
                     Owner page=new Owner();
                     page.setLocation(x-200, y-200);
                     page.setVisible(true);
-                    frame.setVisible(false);
+                 //   frame.setVisible(false);
+                    frame.dispose();
                     
                 }
                 
@@ -137,6 +139,7 @@ public class HomePage {
         //frame.setSize(800, 700);
         frame.pack();
         frame.setVisible(true);
+       
 
     }
 
