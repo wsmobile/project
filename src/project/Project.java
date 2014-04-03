@@ -8,7 +8,7 @@ package project;
 
 /**
  *
- * @author THIS IS A TERST   324234234
+ * @author THIS IS A TERST   FROMS ONLINE
  */
 public class Project {
 
