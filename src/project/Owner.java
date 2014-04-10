@@ -7,7 +7,7 @@ class Owner extends JFrame
  {
    Owner()
   {
-   Inventory.save();
+   Inventory.load();
    
   setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
   setTitle("Welcome");
