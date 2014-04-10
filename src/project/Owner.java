@@ -84,6 +84,7 @@ class Owner extends JFrame
         CreateNewItemPanel.add(new JTextField("(int) i.quantity"));
         CreateNewItemPanel.add(CreateButton);
         CreateNewItemPanel.setBackground(Color.gray);
+        
         add(CreateNewItemPanel);
         
            CreateButton.addActionListener(new ActionListener() {
@@ -101,7 +102,16 @@ class Owner extends JFrame
 //      Profit = Revenues - Costs, 
 // Revenues = Sum of sell price for all sold items
 // Costs = Sum of invoice price for all items brought in the inventory (bought) 
-   
+//        JPanel InfoPanel = new JPanel(new GridLayout(1, 14));
+//        //SpacePanel.add(new JLabel("TOTALS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
+//        SpacePanel.add(new JLabel("Costs:"));
+//        SpacePanel.add(new JLabel("0"));
+//        SpacePanel.add(new JLabel("Revenues:"));
+//        SpacePanel.add(new JLabel("0"));
+//        SpacePanel.add(new JLabel("Profit:"));
+//        SpacePanel.add(new JLabel("0"));
+//        
+//        add(InfoPanel);
            
            
            
