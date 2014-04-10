@@ -42,6 +42,7 @@ public class Inventory implements java.io.Serializable {
     }
     public static void load()
     {
+        System.out.println("ok");
         Item e = null;
         try {
             FileInputStream fileIn = new FileInputStream("inventory.ser");
@@ -49,6 +50,7 @@ public class Inventory implements java.io.Serializable {
             e = (Item) in.readObject();
             in.close();
             fileIn.close();
+            System.out.println("ok");
         } catch (IOException i) {
             i.printStackTrace();
             return;
@@ -57,6 +59,7 @@ public class Inventory implements java.io.Serializable {
             c.printStackTrace();
             return;
         }
+         System.out.println("ok");
         System.out.println("Deserialized Inventory...");
         System.out.println("Name: " + e.name());
         System.out.println("ID: " + e.ID());
