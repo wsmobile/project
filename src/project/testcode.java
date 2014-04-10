@@ -1,3 +1,9 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import static project.Inventory.inventory;
+
 //loop for buttons
     
 //    	for (i=0; i<colors.length; i++) {
@@ -21,3 +27,15 @@
 //	}  // for loop
 //    
 //
+
+
+
+//
+//         JButton saveallButton = new JButton("SaveAll");
+//
+//        saveallButton.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e) {
+//
+//               inventory.save();
+//            }
+//        });

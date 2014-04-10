@@ -1,7 +1,7 @@
+
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+IF YOU CHANGE SOMETHING IN THIS CLASS SERILIZATION WILL NOT LOAD
  */
 
 package project;
@@ -11,18 +11,17 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author freestyler
+ * @author wsmobile
  */
 public class Item implements java.io.Serializable{
     // ID, type, quantity, invoice price, and selling price
-    public String ID;
-    public String name;
-    public double invoicePrice;
-    public double sellingPrice;
-    public String type;
-    public int quantity ;
-    
-    ImageIcon picture = new ImageIcon();
+    private String ID;
+    private String name;
+    private double invoicePrice;
+    private double sellingPrice;
+    private String type;
+    private int quantity ;
+    private ImageIcon picture = new ImageIcon();
     
     
     public Item()
@@ -101,8 +100,8 @@ public class Item implements java.io.Serializable{
          quantity=q;
     }
     
-//    public void setPicture(){
-//         picture;
-//    }
+    public void setPicture(ImageIcon p){
+        picture = p;
+    }
    
 }

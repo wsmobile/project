@@ -89,9 +89,9 @@ public class HomePage {
                 
                 else if ( (tempusername.getText().equals("admin")) && (temppassword.getText().equals("pass")) ){
                     //open in seller mode
-                    System.out.println("ad");
+                    System.out.println("sellermode");
                     Owner page=new Owner();
-                    page.setLocation(x-550, y-300);
+                    page.setLocation(x-600, y-300);
                     page.setVisible(true);
                  //   frame.setVisible(false);
                     frame.dispose();
@@ -113,7 +113,7 @@ public class HomePage {
 			if (sCurrentLine.equals(pass))
                         {
                             //open in buyermode
-                            System.out.println("ss");
+                            System.out.println("buyermode");
                         }
                         
                         else {

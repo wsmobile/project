@@ -16,44 +16,87 @@ class Owner extends JFrame
    Owner()
   {
 
+   
     
-    
-    
+//    
 //  Inventory.createTestItemz();
 //  Inventory.save();
-  Inventory.loadz();
+  Inventory.load();
   
         for(Item i : inventory){
             
-        System.out.println(i.name+"\t"+i.type+"\t"+i.ID+"\t"+i.sellingPrice+"\t"+i.quantity);
+        System.out.println(i.getName()+"\t"+i.getType()+"\t"+i.getID()+"\t"+i.getSellingPrice()+"\t"+i.getQuantity());
+        
         }
         
         
         //displaying in window
-      this.setLayout(new GridLayout(15, 1));
+      setLayout(new GridLayout(inventory.size()+10, 1));
       
       
       //panel for current items
-      for(Item i : inventory){
+      for(int i=0;i<inventory.size();i++){
+       
+        final JPanel CurrentItemPanel = new JPanel(new GridLayout(1, 15));
         
-        JPanel CurrentItemPanel = new JPanel(new GridLayout(1, 14));
+        final JLabel nameLabel = new JLabel (inventory.get(i).getName());
         
-        CurrentItemPanel.add(new JLabel(i.picture));
+        final JFormattedTextField sellingpriceField = new JFormattedTextField();
+        sellingpriceField.setValue(inventory.get(i).getSellingPrice());
+        
+        final JFormattedTextField invoicepriceField = new JFormattedTextField();
+        invoicepriceField.setValue(inventory.get(i).getInvoicePrice());
+        
+        final JFormattedTextField quantityField = new JFormattedTextField();
+        quantityField.setValue(inventory.get(i).getQuantity());
+        
+        JButton updateButton = new JButton("Update");
+        JButton removeButton = new JButton("Remove");
+        
+        
+      
+        //inventory.get(i).setInvoicePrice((double) invoicepriceField.getValue());
+        
+        
+        CurrentItemPanel.add(new JLabel(inventory.get(i).getpicture()));
         CurrentItemPanel.add(new JLabel("Name:"));
-        CurrentItemPanel.add(new JLabel(i.name));
+        CurrentItemPanel.add(new JLabel(inventory.get(i).getName()));
         CurrentItemPanel.add(new JLabel("Type:"));
-        CurrentItemPanel.add(new JLabel(i.type));
+        CurrentItemPanel.add(new JLabel(inventory.get(i).getType()));
         CurrentItemPanel.add(new JLabel("ID:"));
-        CurrentItemPanel.add(new JLabel(i.ID));
+        CurrentItemPanel.add(new JLabel(inventory.get(i).getID()));
         CurrentItemPanel.add(new JLabel("Invoice Price:"));
-        CurrentItemPanel.add(new JTextField((int) i.invoicePrice));        ////fixthis cant print doubles toJtextField
+        CurrentItemPanel.add(invoicepriceField);      
         CurrentItemPanel.add(new JLabel("Selling Price:"));
-        CurrentItemPanel.add(new JTextField((int) i.sellingPrice));
+        CurrentItemPanel.add(sellingpriceField);
         CurrentItemPanel.add(new JLabel("Quantity:"));
-        CurrentItemPanel.add(new JTextField((int) i.quantity));
-        CurrentItemPanel.add(new JButton("Remove"));
+        CurrentItemPanel.add(quantityField);
+        CurrentItemPanel.add(updateButton);
+        CurrentItemPanel.add(removeButton);
+        
+          updateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+               Inventory.setInvetoryItem((double) invoicepriceField.getValue(), nameLabel.getText());
+               Inventory.save();
+               CurrentItemPanel.repaint();
+    
+            }
+        });
+          
+          removeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+               Inventory.removeInvetoryItem( nameLabel.getText());
+               Inventory.save();
                
-        this.add(CurrentItemPanel);
+               Owner page=new Owner();
+               page.setVisible(true);
+                   
+            }
+        });
+        
+        add(CurrentItemPanel);
 
         }
       
@@ -113,11 +156,11 @@ class Owner extends JFrame
 //        
 //        add(InfoPanel);
            
-           
-           
+  
+    
   setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
   setTitle("Welcome");
-  setSize(1150, 400);
+  setSize(1200, 400);
   //setLocation(150, 150); ///not working location is being set from HomePage.java
    }
   } 
