@@ -28,8 +28,40 @@ public class Item {
         name = n;
     }
     
+    public Item (String n, String id, String t, double i, double s, int q)
+    {
+        ID = id;
+        name = n;
+        invoicePrice = i;
+        sellingPrice = s;
+        type = t;
+        quantity = q;
+    }
+     
+    public String ID()
+    {
+        return ID;
+    }
     
- 
-    
-    
+    public String name() {
+        return name;
+    }
+
+    public String type() {
+        return type;
+    }
+
+    public double invoicePrice() {
+        return invoicePrice;
+    }
+
+    public double sellingPrice() {
+        return sellingPrice;
+    }
+
+    public int quantity() {
+        return quantity;
+    }
+
+   
 }
