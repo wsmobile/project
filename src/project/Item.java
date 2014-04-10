@@ -47,34 +47,62 @@ public class Item implements java.io.Serializable{
     }
      
     //accessor methods
-    public String ID()
+    public String getID()
     {
         return ID;
     }
     
-    public String name() {
+    public String getName() {
         return name;
     }
 
-    public String type() {
+    public String getType() {
         return type;
     }
 
-    public double invoicePrice() {
+    public double getInvoicePrice() {
         return invoicePrice;
     }
 
-    public double sellingPrice() {
+    public double getSellingPrice() {
         return sellingPrice;
     }
 
-    public int quantity() {
+    public int getQuantity() {
         return quantity;
     }
     
     public ImageIcon getpicture(){
         return picture;
     }
+    
+    public void setID(String id)
+    {
+         ID=id;
+    }
+    
+    public void setName(String n) {
+         name=n;
+    }
 
+    public void setType(String t) {
+         type=t;
+    }
+
+    public void setInvoicePrice(double i) {
+         invoicePrice=i;
+    }
+
+    public void setSellingPrice(double s) {
+         sellingPrice=s;
+    }
+
+    public void setQuantity(int q) {
+         quantity=q;
+    }
+    
+//    public void setPicture(){
+//         picture;
+//    }
    
 }
