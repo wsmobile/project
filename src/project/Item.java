@@ -21,7 +21,10 @@ public class Item {
     public String type;
     public int quantity ;
     
-    
+    public Item()
+    {
+        
+    }
     
     //constructors
     public Item (String n){
