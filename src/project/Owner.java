@@ -37,7 +37,7 @@ class Owner extends JFrame
         panel.add(new JLabel("ID:"));
         panel.add(new JLabel(i.ID));
         panel.add(new JLabel("Invoice Price:"));
-        panel.add(new JTextField((int) i.invoicePrice));
+        panel.add(new JTextField((int) i.invoicePrice));        ////fixthis cant print doubles toJtextField
         panel.add(new JLabel("Selling Price:"));
         panel.add(new JTextField((int) i.sellingPrice));
         panel.add(new JLabel("Quantity:"));
@@ -54,6 +54,6 @@ class Owner extends JFrame
   setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE );
   setTitle("Welcome");
   setSize(1100, 400);
-  //setLocation(150, 150); ///not working
+  //setLocation(150, 150); ///not working location is being set from HomePage.java
    }
   } 
