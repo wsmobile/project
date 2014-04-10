@@ -91,7 +91,7 @@ public class HomePage {
                     //open in seller mode
                     System.out.println("ad");
                     Owner page=new Owner();
-                    page.setLocation(x-200, y-200);
+                    page.setLocation(x-550, y-300);
                     page.setVisible(true);
                  //   frame.setVisible(false);
                     frame.dispose();

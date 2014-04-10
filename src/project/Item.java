@@ -7,12 +7,13 @@
 package project;
 
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author freestyler
  */
-public class Item {
+public class Item implements java.io.Serializable{
     // ID, type, quantity, invoice price, and selling price
     public String ID;
     public String name;
@@ -20,6 +21,9 @@ public class Item {
     public double sellingPrice;
     public String type;
     public int quantity ;
+    
+    ImageIcon picture = new ImageIcon();
+    
     
     public Item()
     {
@@ -39,8 +43,10 @@ public class Item {
         sellingPrice = s;
         type = t;
         quantity = q;
+        
     }
      
+    //accessor methods
     public String ID()
     {
         return ID;
@@ -64,6 +70,10 @@ public class Item {
 
     public int quantity() {
         return quantity;
+    }
+    
+    public ImageIcon getpicture(){
+        return picture;
     }
 
    
