@@ -41,15 +41,13 @@ public class Inventory implements java.io.Serializable {
     }
     public static void load()
     {
-        Item e = new Item();
+        ArrayList<Item> e = new ArrayList<>();
         try {           
             FileInputStream fileIn = new FileInputStream("inventory.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            e = (Item) in.readObject();
-            System.out.println("ok3");
+            e = (ArrayList<Item>) in.readObject();
             in.close();
             fileIn.close();
-            System.out.println("ok");
         } catch (IOException i) {
             i.printStackTrace();
             return;
@@ -58,13 +56,13 @@ public class Inventory implements java.io.Serializable {
             c.printStackTrace();
             return;
         }
-        System.out.println("ok");
-        System.out.println("Deserialized Inventory...");
-        System.out.println("Name: " + e.name());
-        System.out.println("ID: " + e.ID());
-        System.out.println("Type: " + e.type());
-        System.out.println("Invoice Price: " + e.invoicePrice());
-        System.out.println("Selling Price: " + e.sellingPrice());
-        System.out.println("Quantity: " + e.quantity());
+//        System.out.println("ok");
+//        System.out.println("Deserialized Inventory...");
+//        System.out.println("Name: " + e.);
+//        System.out.println("ID: " + e.ID());
+//        System.out.println("Type: " + e.type());
+//        System.out.println("Invoice Price: " + e.invoicePrice());
+//        System.out.println("Selling Price: " + e.sellingPrice());
+//        System.out.println("Quantity: " + e.quantity());
     }
 }
