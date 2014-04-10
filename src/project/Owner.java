@@ -77,7 +77,7 @@ class Owner extends JFrame
         CreateNewItemPanel.add(new JLabel("ID:"));
         CreateNewItemPanel.add(new JTextField("i.ID"));
         CreateNewItemPanel.add(new JLabel("Invoice Price:"));
-        CreateNewItemPanel.add(new JTextField("(int) i.invoicePrice"));       
+        CreateNewItemPanel.add(new JTextField("(int) i.invoicePrice"));        ////fixthis cant print doubles toJtextField
         CreateNewItemPanel.add(new JLabel("Selling Price:"));
         CreateNewItemPanel.add(new JTextField("(int) i.sellingPrice"));
         CreateNewItemPanel.add(new JLabel("Quantity:"));
