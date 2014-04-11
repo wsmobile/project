@@ -20,12 +20,11 @@ class Owner extends JFrame {
     Owner() {
 
         //use to initialize inventory
-   try { 
-  Inventory.createTestItemz(); } catch (IOException ioe) {
-            ioe.printStackTrace();
-        }
-   
-  Inventory.save();
+//   try { 
+//  Inventory.createTestItemz(); } catch (IOException ioe) {
+//            ioe.printStackTrace();
+//        }
+//  Inventory.save();
   
   Inventory.load();
         
