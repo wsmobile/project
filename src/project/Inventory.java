@@ -19,7 +19,7 @@ public class Inventory implements java.io.Serializable {
     public static ArrayList<Item> inventory = new ArrayList<>();
     
     
-    public static void setInvetoryItem(double inv, String name){
+    public static void setInvetoryItem( double inv, double s, int q, String name){
         
         int j=0;
         for(Item i : inventory){
@@ -31,6 +31,8 @@ public class Inventory implements java.io.Serializable {
            
         }
         inventory.get(j).setInvoicePrice(inv);
+        inventory.get(j).setSellingPrice(s);
+        inventory.get(j).setQuantity(q);
         
     }
     

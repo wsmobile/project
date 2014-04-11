@@ -77,7 +77,7 @@ class Owner extends JFrame
           updateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-               Inventory.setInvetoryItem((double) invoicepriceField.getValue(), nameLabel.getText());
+               Inventory.setInvetoryItem((double) invoicepriceField.getValue(),(double) sellingpriceField.getValue(),(int) quantityField.getValue(), nameLabel.getText());
                Inventory.save();
                CurrentItemPanel.repaint();
     
