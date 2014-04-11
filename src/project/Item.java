@@ -6,7 +6,9 @@ IF YOU CHANGE SOMETHING IN THIS CLASS SERILIZATION WILL NOT LOAD
 
 package project;
 
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,7 +23,7 @@ public class Item implements java.io.Serializable{
     private double sellingPrice;
     private String type;
     private int quantity ;
-    private ImageIcon picture = new ImageIcon();
+    private ImageIcon picture ;
     
     
     public Item()
@@ -34,8 +36,22 @@ public class Item implements java.io.Serializable{
         name = n;
     }
     
-    public Item (String n, String id, String t, double i, double s, int q)
+    //constructor no picture
+        public Item ( String n, String id, String t, double i, double s, int q)
     {
+        
+        ID = id;
+        name = n;
+        invoicePrice = i;
+        sellingPrice = s;
+        type = t;
+        quantity = q;
+        
+    }
+    //overloaded w picture
+    public Item (ImageIcon p, String n, String id, String t, double i, double s, int q)
+    {
+        picture = p;
         ID = id;
         name = n;
         invoicePrice = i;

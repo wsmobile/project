@@ -29,17 +29,17 @@ public class HomePage {
 
         final JFrame frame = new JFrame("HomePage");
         //frame.setLocationRelativeTo(null);
-       
-        final int x = (Toolkit.getDefaultToolkit().getScreenSize().width/2);
-        final int y = (Toolkit.getDefaultToolkit().getScreenSize().height/2);
-        frame.setLocation(x-150, y-150);
-        
+
+        final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
+        final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+        frame.setLocation(x - 150, y - 150);
+
         JButton registerButton = new JButton("Register");
         JButton loginButton = new JButton("Log in");
         final JTextField tempusername = new JTextField(10);
         final JPasswordField temppassword = new JPasswordField(10);
-        
- frame.getRootPane().setDefaultButton(loginButton);
+
+        frame.getRootPane().setDefaultButton(loginButton);
         JPanel panel = new JPanel(new GridLayout(3, 2));
 
         panel.add(new JLabel("Enter username:"));
@@ -52,81 +52,65 @@ public class HomePage {
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                
-                File f = new File (tempusername.getText()+".txt");
-                if (f.exists())
+                File f = new File(tempusername.getText() + ".txt");
+                if (f.exists()) {
                     JOptionPane.showMessageDialog(frame, "Username exists!");
-                else{
-                try {
-                    BufferedWriter out = new BufferedWriter(new FileWriter(tempusername.getText()+".txt"));
-                    
+                } else {
+                    try {
+                        BufferedWriter out = new BufferedWriter(new FileWriter(tempusername.getText() + ".txt"));
+
                         out.write(temppassword.getText() + "\n");
-                       
-                    
-                    out.close();
-                } catch (IOException ee) {ee.printStackTrace();}
+
+                        out.close();
+                    } catch (IOException ee) {
+                        ee.printStackTrace();
+                    }
                 }
 
             }
         });
-        
-           loginButton.addActionListener(new ActionListener() {
+
+        loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                File f = new File (tempusername.getText()+".txt");
-                
-                
-                if (tempusername.getText().length()==0){
+                File f = new File(tempusername.getText() + ".txt");
+
+                if (tempusername.getText().length() == 0) {
                     JOptionPane.showMessageDialog(frame, "Username was empty!\nPLease enter username.");
-                }
-                
-                else if (temppassword.getText().length()==0){
+                } else if (temppassword.getText().length() == 0) {
                     JOptionPane.showMessageDialog(frame, "Password was empty!\nPLease enter apassword.");
-                }                
-                
-                else if (!f.exists())
+                } else if (!f.exists()) {
                     JOptionPane.showMessageDialog(frame, "Username does not exists!\nPlease register.");
-                
-                else if ( (tempusername.getText().equals("admin")) && (temppassword.getText().equals("pass")) ){
+                } else if ((tempusername.getText().equals("admin")) && (temppassword.getText().equals("pass"))) {
                     //open in seller mode
                     System.out.println("sellermode");
-                    Owner page=new Owner();
-                    page.setLocation(x-600, y-300);
+                    Owner page = new Owner();
+                    page.setLocation(x - 600, y - 300);
                     page.setVisible(true);
-                 //   frame.setVisible(false);
+                    //   frame.setVisible(false);
                     frame.dispose();
-                    
-                }
-                
-                else {
+
+                } else {
                     BufferedReader br = null;
- 
-		try 
-                {
-                    String sCurrentLine;
-                    String pass = temppassword.getText();
- 
-                    br = new BufferedReader(new FileReader(tempusername.getText()+".txt"));
- 
-                    while ((sCurrentLine = br.readLine()) != null) 
-                    {
-			if (sCurrentLine.equals(pass))
-                        {
-                            //open in buyermode
-                            System.out.println("buyermode");
+
+                    try {
+                        String sCurrentLine;
+                        String pass = temppassword.getText();
+
+                        br = new BufferedReader(new FileReader(tempusername.getText() + ".txt"));
+
+                        while ((sCurrentLine = br.readLine()) != null) {
+                            if (sCurrentLine.equals(pass)) {
+                                //open in buyermode
+                                System.out.println("buyermode");
+                            } else {
+                                JOptionPane.showMessageDialog(frame, "Password does not match!\nPlease try again!");
+                            }
+
                         }
-                        
-                        else {
-                            JOptionPane.showMessageDialog(frame, "Password does not match!\nPlease try again!");
-                        }
-                   
- 
-		} }
-                
-                catch (IOException eee) 
-                {
-                    eee.printStackTrace();
-		} 
+                    } catch (IOException eee) {
+                        eee.printStackTrace();
+                    }
                 }
 
             }
@@ -139,7 +123,6 @@ public class HomePage {
         //frame.setSize(800, 700);
         frame.pack();
         frame.setVisible(true);
-       
 
     }
 
