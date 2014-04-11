@@ -25,7 +25,7 @@ class Owner extends JFrame {
             System.out.println(i.getName() + "\t" + i.getType() + "\t" + i.getID() + "\t" + i.getSellingPrice() + "\t" + i.getQuantity());
 
         }
-
+ 
         //displaying in window
         setLayout(new GridLayout(inventory.size() + 10, 1));
 
@@ -36,14 +36,21 @@ class Owner extends JFrame {
 
             final JLabel nameLabel = new JLabel(inventory.get(i).getName());
 
-            final JFormattedTextField sellingpriceField = new JFormattedTextField();
-            sellingpriceField.setValue(inventory.get(i).getSellingPrice());
+//            final JFormattedTextField nameField = new JFormattedTextField();
+//            nameField.setValue(inventory.get(i).getName());
+//            final JFormattedTextField typeField = new JFormattedTextField();
+//            typeField.setValue(inventory.get(i).getType());
+//            final JFormattedTextField IDField = new JFormattedTextField();
+//            IDField.setValue(inventory.get(i).getID());
+            
+            final JFormattedTextField quantityField = new JFormattedTextField();
+            quantityField.setValue(inventory.get(i).getQuantity());
 
             final JFormattedTextField invoicepriceField = new JFormattedTextField();
             invoicepriceField.setValue(inventory.get(i).getInvoicePrice());
 
-            final JFormattedTextField quantityField = new JFormattedTextField();
-            quantityField.setValue(inventory.get(i).getQuantity());
+            final JFormattedTextField sellingpriceField = new JFormattedTextField();
+            sellingpriceField.setValue(inventory.get(i).getSellingPrice());
 
             JButton updateButton = new JButton("Update");
             JButton removeButton = new JButton("Remove");
@@ -62,6 +69,7 @@ class Owner extends JFrame {
             CurrentItemPanel.add(sellingpriceField);
             CurrentItemPanel.add(new JLabel("Quantity:"));
             CurrentItemPanel.add(quantityField);
+            
             CurrentItemPanel.add(updateButton);
             CurrentItemPanel.add(removeButton);
 
@@ -105,30 +113,47 @@ class Owner extends JFrame {
         JPanel CreateNewItemPanel = new JPanel(new GridLayout(1, 14));
         JButton CreateButton = new JButton("Create");
 
+         final JFormattedTextField nameField = new JFormattedTextField();
+
+        final JFormattedTextField IDField = new JFormattedTextField();
+
+        final JFormattedTextField typeField = new JFormattedTextField();
+
+        final JFormattedTextField sellingpriceField2 = new JFormattedTextField();
+
+        final JFormattedTextField invoicepriceField2 = new JFormattedTextField();
+
+        final JFormattedTextField quantityField2 = new JFormattedTextField();
+        
+        
         CreateNewItemPanel.add(new JLabel("i.picture)"));
         CreateNewItemPanel.add(new JLabel("Name:"));
-        CreateNewItemPanel.add(new JTextField("i.name"));
+        CreateNewItemPanel.add(nameField);
         CreateNewItemPanel.add(new JLabel("Type:"));
-        CreateNewItemPanel.add(new JTextField("i.type"));
+        CreateNewItemPanel.add(typeField);
         CreateNewItemPanel.add(new JLabel("ID:"));
-        CreateNewItemPanel.add(new JTextField("i.ID"));
+        CreateNewItemPanel.add(IDField);
         CreateNewItemPanel.add(new JLabel("Invoice Price:"));
-        CreateNewItemPanel.add(new JTextField("(int) i.invoicePrice"));        ////fixthis cant print doubles toJtextField
+        CreateNewItemPanel.add(invoicepriceField2);        ////fixthis cant print doubles toJtextField
         CreateNewItemPanel.add(new JLabel("Selling Price:"));
-        CreateNewItemPanel.add(new JTextField("(int) i.sellingPrice"));
+        CreateNewItemPanel.add(sellingpriceField2);
         CreateNewItemPanel.add(new JLabel("Quantity:"));
-        CreateNewItemPanel.add(new JTextField("(int) i.quantity"));
+        CreateNewItemPanel.add(quantityField2);
         CreateNewItemPanel.add(CreateButton);
         CreateNewItemPanel.setBackground(Color.gray);
+       
         
         add(CreateNewItemPanel);
         //add(horinScroll);
         CreateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-            /////////////get info from panel and create new item
+            //get info from panel and create new item
+                //System.out.println((String)nameField.getValue());
+               Item i = new Item(nameField.getText(), IDField.getText(), typeField.getText(), 
+                       Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()), Integer.parseInt(quantityField2.getText()));
                
-
+               inventory.add(i);
+               Inventory.save();
             }
         });
 
