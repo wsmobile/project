@@ -24,6 +24,7 @@ public class Item implements java.io.Serializable{
     private String type;
     private int quantity ;
     private ImageIcon picture ;
+    private String filename;
     
     
     public Item()
@@ -60,6 +61,21 @@ public class Item implements java.io.Serializable{
         quantity = q;
         
     }
+    
+    
+        //overloaded w picture and filename
+    public Item (ImageIcon p, String n, String id, String t, double i, double s, int q, String f)
+    {
+        picture = p;
+        ID = id;
+        name = n;
+        invoicePrice = i;
+        sellingPrice = s;
+        type = t;
+        quantity = q;
+        filename = f;
+        
+    }
      
     //accessor methods
     public String getID()
@@ -91,6 +107,10 @@ public class Item implements java.io.Serializable{
         return picture;
     }
     
+    public String getfilename(){
+        return filename;
+    }
+    
     public void setID(String id)
     {
          ID=id;
@@ -118,6 +138,10 @@ public class Item implements java.io.Serializable{
     
     public void setPicture(ImageIcon p){
         picture = p;
+    }
+    
+    public void setfilename(String f){
+        filename = f;
     }
    
 }

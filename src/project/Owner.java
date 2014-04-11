@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import static project.Inventory.inventory;
 
 class Owner extends JFrame {
@@ -25,7 +26,7 @@ class Owner extends JFrame {
 //            ioe.printStackTrace();
 //        }
 //  Inventory.save();
-  
+//  
   Inventory.load();
         
 
@@ -166,9 +167,23 @@ class Owner extends JFrame {
         CreateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             //get info from panel and create new item
-
-                Item i = new Item(nameField.getText(), IDField.getText(), typeField.getText(),
-                        Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()), Integer.parseInt(quantityField2.getText()));
+                
+                //run filechooser and get name
+                String f = FileChooserDemo.createAndShowGUI();
+                
+                Image myimage = null ;
+                try {
+                    myimage = ImageIO.read(new File(f));
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+                
+                 ImageIcon icon = new ImageIcon(myimage);
+                
+                
+                Item i = new Item(icon, nameField.getText(), IDField.getText(), typeField.getText(),
+                        Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
+                        Integer.parseInt(quantityField2.getText()), f);
 
                 inventory.add(i);
                 Inventory.save();
