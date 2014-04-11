@@ -148,7 +148,7 @@ class Owner extends JFrame {
         CreateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             //get info from panel and create new item
-                //System.out.println((String)nameField.getValue());
+                
                Item i = new Item(nameField.getText(), IDField.getText(), typeField.getText(), 
                        Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()), Integer.parseInt(quantityField2.getText()));
                
