@@ -1,1299 +1,1093 @@
 package project;
 
 import java.awt.*;
-
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
-
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.Enumeration;
-
-
-
-
 import javax.swing.*;
 import static project.Inventory.inventory;
 
 
 
+public class Customer extends JFrame implements ActionListener {
 
+    public JButton btnP, btnR, Sub, btnD, btnH, btnV, rem;
 
+    public JRadioButton Rb1, Rb2, Rb3, Rb4, ans, Rb10;
 
+    public JRadioButton Rb5, Rb6, Rb7, Rb8, Rb9;
 
-public class Customer extends JFrame implements ActionListener{
+    public JRadioButton Rb11, Rb12, Rb13, Rb14, Rb15;
 
+    public JRadioButton Rb20, Rb16, Rb17, Rb18, Rb19;
 
+    public JRadioButton Rb25, Rb21, Rb22, Rb23, Rb24;
 
+    public JLabel pl1, pl2, pl3, pl4, pl5;
 
- public JButton btnP,btnR,Sub,btnD,btnH,btnV,rem;
+    public ButtonGroup BG1, BG2, BG3, BG4, BG5;
 
- public JRadioButton Rb1,Rb2,Rb3,Rb4,ans,Rb10;
+    public JLabel l1, l2, l3, l4, l5;
 
- public JRadioButton Rb5,Rb6,Rb7,Rb8,Rb9;
+    public Container con;
 
- public JRadioButton Rb11,Rb12,Rb13,Rb14,Rb15;
+    public String[] Sary;
 
- public JRadioButton Rb20,Rb16,Rb17,Rb18,Rb19;
+    public Customer() {
 
- public JRadioButton Rb25,Rb21,Rb22,Rb23,Rb24;
+        Inventory.load();
 
- public JLabel pl1,pl2,pl3,pl4,pl5;
+        Sary = new String[5];
 
- public ButtonGroup BG1,BG2,BG3,BG4,BG5;
+        for (int x = 0; x < Sary.length; x++) {
+            Sary[x] = "Sary_OrderArray ";
+        }
 
- public JLabel l1,l2,l3,l4,l5;
+        this.setVisible(true);
 
- public Container con;
+        this.setSize(600, 435);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
- public String[] Sary;
+        con = getContentPane();
 
- 
+        con.setLayout(null);
 
- public Customer() {
+        final Box b1 = Box.createVerticalBox();
 
-     Inventory.load();
+        final Box b2 = Box.createVerticalBox();
 
-  Sary= new String[5];
+        final Box b3 = Box.createVerticalBox();
 
-  for(int x=0;x<Sary.length;x++)
+        final Box b4 = Box.createVerticalBox();
 
-           Sary[x]="Sary_OrderArray ";
+        final Box b5 = Box.createVerticalBox();
 
-  
+        final Box first = Box.createVerticalBox();
 
-  this.setVisible(true);
+        final Box buy = Box.createVerticalBox();
 
-  this.setSize(600,435);
-  setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        final Box choz = Box.createVerticalBox();
 
-  con= getContentPane();
+        con.setBackground(Color.white);
 
-  con.setLayout(null);
+        l1 = new JLabel("Jlabel1");
 
-  
+        l2 = new JLabel("JLabel2");
 
-  final Box b1= Box.createVerticalBox();
+        l3 = new JLabel("");
 
-  final Box b2= Box.createVerticalBox();
+        l4 = new JLabel("");
 
-  final Box b3= Box.createVerticalBox();
+        l5 = new JLabel("");
 
-  final Box b4= Box.createVerticalBox();
+        first.setVisible(true);
 
-  final Box b5= Box.createVerticalBox();
+        first.setBounds(125, 0, 275, 450);
 
-  final Box first= Box.createVerticalBox();
+        first.setBorder(BorderFactory.createTitledBorder(" "));
 
-  final Box buy= Box.createVerticalBox();
+        con.add(first);
 
-  final Box choz= Box.createVerticalBox();
+        buy.setVisible(true);
 
-  con.setBackground(Color.white);
+        buy.setBounds(400, 0, 200, 450);
 
-  
+        buy.setBorder(BorderFactory.createTitledBorder("Selected items"));
 
-  
+        con.add(buy);
 
-  l1= new JLabel("Jlabel1");
+        BG1 = new ButtonGroup();
 
-  l2= new JLabel("JLabel2");
+        BG2 = new ButtonGroup();
 
-  l3= new JLabel("");
+        BG3 = new ButtonGroup();
 
-  l4= new JLabel("");
+        BG4 = new ButtonGroup();
 
-  l5= new JLabel("");
-
-  
-
-  
-
-  
-
-  
-
-  first.setVisible(true);
-
-  first.setBounds(125, 0, 275, 450);
-
-  first.setBorder(BorderFactory.createTitledBorder(" "));
-
-  con.add(first);
-
-  buy.setVisible(true);
-
-  buy.setBounds(400, 0, 200, 450);
-
-  buy.setBorder(BorderFactory.createTitledBorder("Selected items"));
-
-  con.add(buy);
-
-  
-
-  BG1=new ButtonGroup();
-
-  BG2= new ButtonGroup();
-
-  BG3= new ButtonGroup();
-
-  BG4= new ButtonGroup();
-
-  BG5= new ButtonGroup();
-
-  
-
-
-
-
-  
+        BG5 = new ButtonGroup();
 
 //Processors  
+        Rb1 = new JRadioButton("Core i3 2.10Ghz(2310M)");
 
-  
+        Rb2 = new JRadioButton("Core i5 2.30Ghz(2410M)");
 
- 
+        Rb3 = new JRadioButton("Core i5 2.40Ghz(2430M))");
 
-  
+        Rb4 = new JRadioButton("Core i7 2.0Ghz(QM2630)");
 
-  Rb1= new JRadioButton("Core i3 2.10Ghz(2310M)");
+        Rb5 = new JRadioButton("Core-i7 2.2Ghz(QM2670)");
 
-  Rb2= new JRadioButton("Core i5 2.30Ghz(2410M)");
+        pl1 = new JLabel("Price - Rs.123 ");
 
-  Rb3= new JRadioButton("Core i5 2.40Ghz(2430M))");
+        pl2 = new JLabel("Price - Rs 2 ");
 
-  Rb4= new JRadioButton("Core i7 2.0Ghz(QM2630)");
+        pl3 = new JLabel("Price - Rs 3 ");
 
-  Rb5= new JRadioButton("Core-i7 2.2Ghz(QM2670)");
+        pl4 = new JLabel("Price - Rs 4 ");
 
-  
+        pl5 = new JLabel("Price - Rs 5 ");
 
-  pl1=new JLabel("Price - Rs.123 ");
+        ImageIcon p1 = new ImageIcon("images\\p1.jpg");
 
-  pl2=new JLabel("Price - Rs 2 "); 
+        JLabel Lp1 = new JLabel(" ", p1, JLabel.CENTER);
 
-  pl3=new JLabel("Price - Rs 3 ");
+        BG1.add(Rb1);
 
-  pl4=new JLabel("Price - Rs 4 ");
+        BG1.add(Rb2);
 
-  pl5=new JLabel("Price - Rs 5 ");
+        BG1.add(Rb3);
 
-  
+        BG1.add(Rb4);
 
-  ImageIcon p1 = new ImageIcon("images\\p1.jpg");
+        BG1.add(Rb5);
 
-  JLabel Lp1 = new JLabel(" ", p1, JLabel.CENTER);
+        b1.add(Box.createRigidArea(new Dimension(0, 10)));
 
-  
+        b1.add(Rb1);
 
-  BG1.add(Rb1);
+        b1.add(pl1);
 
-  BG1.add(Rb2);
+        b1.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  BG1.add(Rb3);
+        b1.add(Rb2);
 
-  BG1.add(Rb4);
+        b1.add(pl2);
 
-  BG1.add(Rb5);
+        b1.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  
+        b1.add(Rb3);
 
-  
+        b1.add(pl3);
 
-  
+        b1.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  
+        b1.add(Rb4);
 
-  b1.add( Box.createRigidArea(new Dimension(0,10)));
+        b1.add(pl4);
 
+        b1.add(Box.createRigidArea(new Dimension(0, 8)));
 
+        b1.add(Rb5);
 
+        b1.add(pl5);
 
-  
+        b1.add(Lp1);
 
-  b1.add(Rb1);
+        Rb1.addActionListener(new ActionListener() {
 
-  b1.add(pl1);
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  b1.add( Box.createRigidArea(new Dimension(0,8)));
+                    Sary[0] = Rb1.getText();
 
-  b1.add(Rb2);
+                    l2.setText(Sary[0]);
 
-  b1.add(pl2);
+                }
+            }
+        });
 
-  b1.add( Box.createRigidArea(new Dimension(0,8)));
+        Rb2.addActionListener(new ActionListener() {
 
-  b1.add(Rb3);
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  b1.add(pl3);
+                    Sary[0] = Rb2.getText();
 
-  b1.add( Box.createRigidArea(new Dimension(0,8)));
+                    l2.setText(Sary[0]);
 
-  b1.add(Rb4);
+                }
+            }
+        });
 
-  b1.add(pl4);
+        Rb3.addActionListener(new ActionListener() {
 
-  b1.add( Box.createRigidArea(new Dimension(0,8)));
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  b1.add(Rb5);
+                    Sary[0] = Rb3.getText();
 
-  b1.add(pl5);
+                    l2.setText(Sary[0]);
 
-  b1.add(Lp1);
+                }
+            }
+        });
 
-  
+        Rb4.addActionListener(new ActionListener() {
 
-  
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb1.addActionListener( new ActionListener() {           
+                    Sary[0] = Rb4.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l2.setText(Sary[0]);
 
-             Sary[0]= Rb1.getText(); 
+                }
+            }
+        });
 
-               l2.setText(Sary[0]);
+        Rb5.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb2.addActionListener( new ActionListener() {           
+                    Sary[0] = Rb5.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l2.setText(Sary[0]);
 
-             Sary[0]= Rb2.getText(); 
+                }
+            }
+        });
 
-               l2.setText(Sary[0]);
+        b1.setVisible(false);
 
-            }}});
+        b1.setBounds(125, 0, 275, 450);
 
-  Rb3.addActionListener( new ActionListener() {           
+        b1.setBorder(BorderFactory.createTitledBorder(" "));
 
-            public void actionPerformed(ActionEvent e) {{
+        btnP = new JButton(" Processors ");
 
-             Sary[0]= Rb3.getText(); 
+        btnP.setMaximumSize(new Dimension(120, 25));
 
-               l2.setText(Sary[0]);
+        con.add(b1);
 
-            }}});
+        btnP.addActionListener(new ActionListener() {
 
-  Rb4.addActionListener( new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
 
-            public void actionPerformed(ActionEvent e) {{
+                b1.setVisible(true);
 
-             Sary[0]= Rb4.getText(); 
+                b2.setVisible(false);
 
-               l2.setText(Sary[0]);
+                b3.setVisible(false);
 
-            }}});
+                b4.setVisible(false);
 
-  Rb5.addActionListener( new ActionListener() {           
+                b5.setVisible(false);
 
-            public void actionPerformed(ActionEvent e) {{
+                first.setVisible(false);
 
-             Sary[0]= Rb5.getText(); 
-
-               l2.setText(Sary[0]);
-
-            }}});
-
-  
-
-  b1.setVisible(false);
-
-  b1.setBounds(125, 0, 275, 450);
-
-  b1.setBorder(BorderFactory.createTitledBorder(" "));
-
-  btnP=new JButton(" Processors ");
-
-  btnP.setMaximumSize(new Dimension(120, 25));
-
-  
-
-
-
-
-  con.add(b1);
-
-  
-
-  btnP.addActionListener(new ActionListener() {
-
-           public void actionPerformed(ActionEvent e) {
-
-             b1.setVisible(true); 
-
-             b2.setVisible(false);
-
-             b3.setVisible(false);
-
-             b4.setVisible(false);
-
-             b5.setVisible(false);
-
-             first.setVisible(false);
-
-           }});
+            }
+        });
 
 //Ram
+        Rb10 = new JRadioButton("1GB DDR3");
 
-  
+        Rb9 = new JRadioButton("2GB DDR3");
 
-  Rb10= new JRadioButton("1GB DDR3");
+        Rb6 = new JRadioButton("4GB DDR3");
 
-  Rb9= new JRadioButton("2GB DDR3");
+        Rb7 = new JRadioButton("6GB DDR3");
 
-  Rb6= new JRadioButton("4GB DDR3");
+        Rb8 = new JRadioButton("8GB DDR3");
 
-  Rb7= new JRadioButton("6GB DDR3");
+        pl1 = new JLabel("Price - Rs.223 ");
 
-  Rb8= new JRadioButton("8GB DDR3");
+        pl2 = new JLabel("Price - Rs 2 ");
 
-  
+        pl3 = new JLabel("Price - Rs 3 ");
 
-  pl1=new JLabel("Price - Rs.223 ");
+        pl4 = new JLabel("Price - Rs 222 ");
 
-  pl2=new JLabel("Price - Rs 2 "); 
+        pl5 = new JLabel("Price - Rs 22222 ");
 
-  pl3=new JLabel("Price - Rs 3 ");
+        ImageIcon r1 = new ImageIcon("images\\R1.jpg");
 
-  pl4=new JLabel("Price - Rs 222 ");
+        JLabel R1 = new JLabel(" ", r1, JLabel.CENTER);
 
-  pl5=new JLabel("Price - Rs 22222 ");
+        BG2.add(Rb10);
 
-  
+        BG2.add(Rb9);
 
-  ImageIcon r1 = new ImageIcon("images\\R1.jpg");
+        BG2.add(Rb6);
 
-  JLabel R1 = new JLabel(" ", r1, JLabel.CENTER);
+        BG2.add(Rb7);
 
-  
+        BG2.add(Rb8);
 
-  BG2.add(Rb10);
+        b2.add(Box.createRigidArea(new Dimension(0, 20)));
 
-  BG2.add(Rb9);
+        b2.add(Rb10);
 
-  BG2.add(Rb6);
+        b2.add(pl1);
 
-  BG2.add(Rb7);
+        b2.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  BG2.add(Rb8);
+        b2.add(Rb9);
 
-  
+        b2.add(pl2);
 
-  b2.add( Box.createRigidArea(new Dimension(0,20)));
+        b2.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b2.add(Rb10);
+        b2.add(Rb6);
 
-  b2.add(pl1);
+        b2.add(pl3);
 
-  b2.add( Box.createRigidArea(new Dimension(0,8)));
+        b2.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b2.add(Rb9);
+        b2.add(Rb7);
 
-  b2.add(pl2);
+        b2.add(pl4);
 
-  b2.add( Box.createRigidArea(new Dimension(0,8)));
+        b2.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b2.add(Rb6);
+        b2.add(Rb8);
 
-  b2.add(pl3);
+        b2.add(pl5);
 
-  b2.add( Box.createRigidArea(new Dimension(0,8)));
+        b2.add(Box.createRigidArea(new Dimension(0, 10)));
 
-  b2.add(Rb7);
+        b2.add(R1);
 
-  b2.add(pl4);
+        Rb9.addActionListener(new ActionListener() {
 
-  b2.add( Box.createRigidArea(new Dimension(0,8)));
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  b2.add(Rb8);
+                    Sary[1] = Rb9.getText();
 
-  b2.add(pl5);
+                    l3.setText(Sary[1]);
 
-  b2.add( Box.createRigidArea(new Dimension(0,10)));
+                }
+            }
+        });
 
-  b2.add(R1);
+        Rb10.addActionListener(new ActionListener() {
 
-  
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb9.addActionListener( new ActionListener() {           
+                    Sary[1] = Rb10.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l3.setText(Sary[1]);
 
-             Sary[1]= Rb9.getText(); 
+                }
+            }
+        });
 
-               l3.setText(Sary[1]);
+        Rb6.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb10.addActionListener( new ActionListener() {           
+                    Sary[1] = Rb6.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l3.setText(Sary[1]);
 
-             Sary[1]= Rb10.getText(); 
+                }
+            }
+        });
 
-               l3.setText(Sary[1]);
+        Rb7.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb6.addActionListener( new ActionListener() {           
+                    Sary[1] = Rb7.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l3.setText(Sary[1]);
 
-             Sary[1]= Rb6.getText(); 
+                }
+            }
+        });
 
-               l3.setText(Sary[1]);
+        Rb8.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb7.addActionListener( new ActionListener() {           
+                    Sary[1] = Rb8.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l3.setText(Sary[1]);
 
-             Sary[1]= Rb7.getText(); 
+                }
+            }
+        });
 
-               l3.setText(Sary[1]);
+        b2.setVisible(false);
 
-            }}});
+        b2.setBounds(125, 0, 275, 450);
 
-  Rb8.addActionListener( new ActionListener() {           
+        b2.setBorder(BorderFactory.createTitledBorder(" "));
 
-            public void actionPerformed(ActionEvent e) {{
+        btnR = new JButton("RAM");
 
-             Sary[1]= Rb8.getText(); 
+        btnR.setMaximumSize(new Dimension(120, 25));
 
-               l3.setText(Sary[1]);
+        con.add(b2);
 
-            }}});
+        btnR.addActionListener(new ActionListener() {
 
-  
+            public void actionPerformed(ActionEvent e) {
 
-  
+                b2.setVisible(true);
 
-  b2.setVisible(false);
+                b1.setVisible(false);
 
-  b2.setBounds(125, 0, 275, 450);
+                b3.setVisible(false);
 
-  b2.setBorder(BorderFactory.createTitledBorder(" "));
+                b4.setVisible(false);
 
-  btnR=new JButton("RAM");
+                b5.setVisible(false);
 
-  btnR.setMaximumSize(new Dimension(120, 25));
+                first.setVisible(false);
 
-  con.add(b2);
-
- 
-
- 
-
-  
-
-  btnR.addActionListener(new ActionListener() {
-
-           public void actionPerformed(ActionEvent e) {
-
-             b2.setVisible(true);   
-
-             b1.setVisible(false);
-
-             b3.setVisible(false);
-
-             b4.setVisible(false);
-
-             b5.setVisible(false);
-
-             first.setVisible(false);
-
-             
-
-           }});
+            }
+        });
 
 //Hard
+        Rb11 = new JRadioButton("250GB");
 
-  
+        Rb12 = new JRadioButton("320GB");
 
-  Rb11= new JRadioButton("250GB");
+        Rb13 = new JRadioButton("500GB");
 
-  Rb12= new JRadioButton("320GB");
+        Rb14 = new JRadioButton("640GB");
 
-  Rb13= new JRadioButton("500GB");
+        Rb15 = new JRadioButton("750GB");
 
-  Rb14= new JRadioButton("640GB");
+        pl1 = new JLabel("Price - Rs.323 ");
 
-  Rb15= new JRadioButton("750GB");
+        pl2 = new JLabel("Price - Rs 33 ");
 
-  
+        pl3 = new JLabel("Price - Rs 3 ");
 
-  pl1=new JLabel("Price - Rs.323 ");
+        pl4 = new JLabel("Price - Rs 3322 ");
 
-  pl2=new JLabel("Price - Rs 33 "); 
+        pl5 = new JLabel("Price - Rs 32222 ");
 
-  pl3=new JLabel("Price - Rs 3 ");
+        ImageIcon h1 = new ImageIcon("images\\Lh1.jpg");
 
-  pl4=new JLabel("Price - Rs 3322 ");
+        JLabel hd1 = new JLabel(" ", h1, JLabel.CENTER);
 
-  pl5=new JLabel("Price - Rs 32222 ");
+        BG3.add(Rb15);
 
-  
+        BG3.add(Rb11);
 
-  ImageIcon h1 = new ImageIcon("images\\Lh1.jpg");
+        BG3.add(Rb12);
 
-  JLabel hd1 = new JLabel(" ", h1, JLabel.CENTER);
+        BG3.add(Rb13);
 
-  
+        BG3.add(Rb14);
 
-  BG3.add(Rb15);
+        b3.add(Box.createRigidArea(new Dimension(0, 20)));
 
-  BG3.add(Rb11);
+        b3.add(Rb15);
 
-  BG3.add(Rb12);
+        b3.add(pl1);
 
-  BG3.add(Rb13);
+        b3.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  BG3.add(Rb14);
+        b3.add(Rb11);
 
-  
+        b3.add(pl2);
 
-  b3.add( Box.createRigidArea(new Dimension(0,20)));
+        b3.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b3.add(Rb15);
+        b3.add(Rb12);
 
-  b3.add(pl1);
+        b3.add(pl3);
 
-  b3.add( Box.createRigidArea(new Dimension(0,8)));
+        b3.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b3.add(Rb11);
+        b3.add(Rb13);
 
-  b3.add(pl2);
+        b3.add(pl4);
 
-  b3.add( Box.createRigidArea(new Dimension(0,8)));
+        b3.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b3.add(Rb12);
+        b3.add(Rb14);
 
-  b3.add(pl3);
-
-  b3.add( Box.createRigidArea(new Dimension(0,8)));
-
-  b3.add(Rb13);
-
-  b3.add(pl4);
-
-  b3.add( Box.createRigidArea(new Dimension(0,8)));
-
-  b3.add(Rb14);
-
-  b3.add(pl5);
+        b3.add(pl5);
 
  // b3.add( Box.createRigidArea(new Dimension(0,10)));
+        b3.add(hd1);
 
-  b3.add(hd1);
+        Rb15.addActionListener(new ActionListener() {
 
-  
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb15.addActionListener( new ActionListener() {           
+                    Sary[2] = Rb15.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l4.setText(Sary[2]);
 
-             Sary[2]= Rb15.getText(); 
+                }
+            }
+        });
 
-               l4.setText(Sary[2]);
+        Rb11.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb11.addActionListener( new ActionListener() {           
+                    Sary[2] = Rb11.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l4.setText(Sary[2]);
 
-             Sary[2]= Rb11.getText(); 
+                }
+            }
+        });
 
-               l4.setText(Sary[2]);
+        Rb12.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb12.addActionListener( new ActionListener() {           
+                    Sary[2] = Rb12.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l4.setText(Sary[2]);
 
-             Sary[2]= Rb12.getText(); 
+                }
+            }
+        });
 
-               l4.setText(Sary[2]);
+        Rb13.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb13.addActionListener( new ActionListener() {           
+                    Sary[2] = Rb13.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l4.setText(Sary[2]);
 
-             Sary[2]= Rb13.getText(); 
+                }
+            }
+        });
 
-               l4.setText(Sary[2]);
+        Rb14.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb14.addActionListener( new ActionListener() {           
+                    Sary[2] = Rb14.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l4.setText(Sary[2]);
 
-             Sary[2]= Rb14.getText(); 
+                }
+            }
+        });
 
-               l4.setText(Sary[2]);
+        b3.setVisible(false);
 
-            }}});
+        b3.setBounds(125, 0, 275, 450);
 
-  
+        b3.setBorder(BorderFactory.createTitledBorder(" "));
 
-  b3.setVisible(false);
+        btnH = new JButton("HDD");
 
-  b3.setBounds(125, 0, 275, 450);
+        btnH.setMaximumSize(new Dimension(120, 25));
 
-  b3.setBorder(BorderFactory.createTitledBorder(" "));
+        con.add(b3);
 
-  btnH=new JButton("HDD");
+        btnH.addActionListener(new ActionListener() {
 
-  btnH.setMaximumSize(new Dimension(120, 25));
+            public void actionPerformed(ActionEvent e) {
 
-  con.add(b3);
+                b3.setVisible(true);
 
- 
+                b1.setVisible(false);
 
- 
+                b2.setVisible(false);
 
-  
+                b4.setVisible(false);
 
-  btnH.addActionListener(new ActionListener() {
+                b5.setVisible(false);
 
-           public void actionPerformed(ActionEvent e) {
+                first.setVisible(false);
 
-             b3.setVisible(true);   
-
-             b1.setVisible(false);
-
-             b2.setVisible(false);
-
-             b4.setVisible(false);
-
-             b5.setVisible(false);
-
-             first.setVisible(false);
-
-             
-
-           }});
+            }
+        });
 
 //Disply
+        Rb20 = new JRadioButton("14\" WXGA");
 
-  
+        Rb19 = new JRadioButton("14.1\" wxga");
 
-  Rb20= new JRadioButton("14\" WXGA");  
+        Rb16 = new JRadioButton("15\" XGA ");
 
-  Rb19= new JRadioButton("14.1\" wxga");
+        Rb17 = new JRadioButton("15.4\"WXGA");
 
-  Rb16= new JRadioButton("15\" XGA ");
+        Rb18 = new JRadioButton("17\"WUXGA");
 
-  Rb17= new JRadioButton("15.4\"WXGA");
+        pl1 = new JLabel("Price - Rs.423 ");
 
-  Rb18= new JRadioButton("17\"WUXGA");
+        pl2 = new JLabel("Price - Rs 43 ");
 
-  
+        pl3 = new JLabel("Price - Rs 4 ");
 
-  
+        pl4 = new JLabel("Price - Rs 4322 ");
 
-  pl1=new JLabel("Price - Rs.423 ");
+        pl5 = new JLabel("Price - Rs 42222 ");
 
-  pl2=new JLabel("Price - Rs 43 "); 
+        Rb19.addActionListener(new ActionListener() {
 
-  pl3=new JLabel("Price - Rs 4 ");
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  pl4=new JLabel("Price - Rs 4322 ");
+                    Sary[3] = Rb19.getText();
 
-  pl5=new JLabel("Price - Rs 42222 ");
+                    l5.setText(Sary[3]);
 
-  
+                }
+            }
+        });
 
-  
+        Rb20.addActionListener(new ActionListener() {
 
-  Rb19.addActionListener( new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+                {
 
-            public void actionPerformed(ActionEvent e) {{
+                    Sary[3] = Rb20.getText();
 
-             Sary[3]= Rb19.getText(); 
+                    l5.setText(Sary[3]);
 
-               l5.setText(Sary[3]);
+                }
+            }
+        });
 
-            }}});
+        Rb16.addActionListener(new ActionListener() {
 
-  Rb20.addActionListener( new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+                {
 
-            public void actionPerformed(ActionEvent e) {{
+                    Sary[3] = Rb16.getText();
 
-             Sary[3]= Rb20.getText(); 
+                    l5.setText(Sary[3]);
 
-               l5.setText(Sary[3]);
+                }
+            }
+        });
 
-            }}});
+        Rb17.addActionListener(new ActionListener() {
 
-  Rb16.addActionListener( new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+                {
 
-            public void actionPerformed(ActionEvent e) {{
+                    Sary[3] = Rb17.getText();
 
-             Sary[3]= Rb16.getText(); 
+                    l5.setText(Sary[3]);
 
-               l5.setText(Sary[3]);
+                }
+            }
+        });
 
-            }}});
+        Rb18.addActionListener(new ActionListener() {
 
-  Rb17.addActionListener( new ActionListener() {           
+            public void actionPerformed(ActionEvent e) {
+                {
 
-            public void actionPerformed(ActionEvent e) {{
+                    Sary[3] = Rb18.getText();
 
-             Sary[3]= Rb17.getText(); 
+                    l5.setText(Sary[3]);
 
-               l5.setText(Sary[3]);
+                }
+            }
+        });
 
-            }}});
+        ImageIcon s1 = new ImageIcon("images\\LS1.jpg");
 
-  Rb18.addActionListener( new ActionListener() {           
+        JLabel ls1 = new JLabel(" ", s1, JLabel.CENTER);
 
-            public void actionPerformed(ActionEvent e) {{
+        BG4.add(Rb20);
 
-             Sary[3]= Rb18.getText(); 
+        BG4.add(Rb19);
 
-               l5.setText(Sary[3]);
+        BG4.add(Rb16);
 
-            }}});
+        BG4.add(Rb17);
 
-  
+        BG4.add(Rb18);
 
-  ImageIcon s1 = new ImageIcon("images\\LS1.jpg");
+        b4.add(Box.createRigidArea(new Dimension(0, 50)));
 
-  JLabel ls1 = new JLabel(" ", s1, JLabel.CENTER);
+        b4.add(Rb20);
 
-  
+        b4.add(pl1);
 
-  BG4.add(Rb20);
+        b4.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  BG4.add(Rb19);
+        b4.add(Rb19);
 
-  BG4.add(Rb16);
+        b4.add(pl2);
 
-  BG4.add(Rb17);
+        b4.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  BG4.add(Rb18);
+        b4.add(Rb16);
 
-  
+        b4.add(pl3);
 
-  b4.add( Box.createRigidArea(new Dimension(0,50)));
+        b4.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b4.add(Rb20);
+        b4.add(Rb17);
 
-  b4.add(pl1);
+        b4.add(pl4);
 
-  b4.add( Box.createRigidArea(new Dimension(0,8)));
+        b4.add(Box.createRigidArea(new Dimension(0, 8)));
 
-  b4.add(Rb19);
+        b4.add(Rb18);
 
-  b4.add(pl2);
+        b4.add(pl5);
 
-  b4.add( Box.createRigidArea(new Dimension(0,8)));
+        b4.add(ls1);
 
-  b4.add(Rb16);
+        b4.setVisible(false);
 
-  b4.add(pl3);
+        b4.setBounds(125, 0, 275, 450);
 
-  b4.add( Box.createRigidArea(new Dimension(0,8)));
+        b4.setBorder(BorderFactory.createTitledBorder(" "));
 
-  b4.add(Rb17);
+        btnV = new JButton("SCREEN");
 
-  b4.add(pl4);
+        btnV.setMaximumSize(new Dimension(120, 25));
 
-  b4.add( Box.createRigidArea(new Dimension(0,8)));
+        con.add(b4);
 
-  b4.add(Rb18);
+        btnV.addActionListener(new ActionListener() {
 
-  b4.add(pl5);
+            public void actionPerformed(ActionEvent e) {
 
-  b4.add(ls1);
+                b4.setVisible(true);
 
-  
+                b1.setVisible(false);
 
-  b4.setVisible(false);
+                b3.setVisible(false);
 
-  b4.setBounds(125, 0, 275, 450);
+                b2.setVisible(false);
 
-  b4.setBorder(BorderFactory.createTitledBorder(" "));
+                b5.setVisible(false);
 
-  btnV=new JButton("SCREEN");
+                first.setVisible(false);
 
-  btnV.setMaximumSize(new Dimension(120, 25));
-
-  con.add(b4);
-
- 
-
- 
-
-  
-
-  btnV.addActionListener(new ActionListener() {
-
-           public void actionPerformed(ActionEvent e) {
-
-             b4.setVisible(true);   
-
-             b1.setVisible(false);
-
-             b3.setVisible(false);
-
-             b2.setVisible(false);
-
-             b5.setVisible(false);
-
-             first.setVisible(false);
-
-             
-
-           }});
-
-  
-
-  
+            }
+        });
 
 //typ
+        pl1 = new JLabel("Price - Rs.423 ");
 
-  pl1=new JLabel("Price - Rs.423 ");
+        pl2 = new JLabel("Price - Rs 43 ");
 
-  pl2=new JLabel("Price - Rs 43 "); 
+        pl3 = new JLabel("Price - Rs 4 ");
 
-  pl3=new JLabel("Price - Rs 4 ");
+        pl4 = new JLabel("Price - Rs 4322 ");
 
-  pl4=new JLabel("Price - Rs 4322 ");
+        pl5 = new JLabel("Price - Rs 42222 ");
 
-  pl5=new JLabel("Price - Rs 42222 ");
+        final Box hb1 = Box.createHorizontalBox();
 
-  
+        final Box hb2 = Box.createHorizontalBox();
 
-  final Box hb1= Box.createHorizontalBox();
+        final Box hb3 = Box.createHorizontalBox();
 
-  final Box hb2= Box.createHorizontalBox();
+        final Box hb4 = Box.createHorizontalBox();
 
-  final Box hb3= Box.createHorizontalBox();
+        final Box hb11 = Box.createHorizontalBox();
 
-  final Box hb4= Box.createHorizontalBox();
+        final Box hb12 = Box.createHorizontalBox();
+        ;
 
-  
+        ImageIcon i1 = new ImageIcon("images\\LM1.jpg");
 
-  final Box hb11= Box.createHorizontalBox();
+        JLabel LM1 = new JLabel(" ", i1, JLabel.CENTER);
 
-  final Box hb12= Box.createHorizontalBox();
+        ImageIcon i2 = new ImageIcon("images\\LM2.jpg");
 
-;
+        JLabel LM2 = new JLabel(" ", i2, JLabel.CENTER);
 
-  
+        ImageIcon i3 = new ImageIcon("images\\LM3.jpg");
 
-  ImageIcon i1 = new ImageIcon("images\\LM1.jpg");
+        JLabel LM3 = new JLabel(" ", i3, JLabel.CENTER);
 
-  JLabel LM1 = new JLabel(" ", i1, JLabel.CENTER);
+        ImageIcon i4 = new ImageIcon("images\\LM4.jpg");
 
-  
+        JLabel LM4 = new JLabel(" ", i4, JLabel.CENTER);
 
-  ImageIcon i2 = new ImageIcon("images\\LM2.jpg");
+        ImageIcon i5 = new ImageIcon("images\\LM5.jpg");
 
-  JLabel LM2 = new JLabel(" ", i2, JLabel.CENTER);
+        JLabel LM5 = new JLabel(" ", i5, JLabel.CENTER);
 
-  
+        Rb21 = new JRadioButton("HP Probook 4530s");
 
-  ImageIcon i3 = new ImageIcon("images\\LM3.jpg");
+        Rb22 = new JRadioButton("HP Pavilion DV6");
 
-  JLabel LM3 = new JLabel(" ", i3, JLabel.CENTER);
+        Rb23 = new JRadioButton("Dell Vostro");
 
-  
+        Rb24 = new JRadioButton("Dell Inspiron N5110");
 
-  ImageIcon i4 = new ImageIcon("images\\LM4.jpg");
+        Rb25 = new JRadioButton("Acer Aspire 5750");
 
-  JLabel LM4 = new JLabel(" ", i4, JLabel.CENTER);
+        BG5.add(Rb21);
 
-  
+        BG5.add(Rb22);
 
-  ImageIcon i5 = new ImageIcon("images\\LM5.jpg");
+        BG5.add(Rb23);
 
-  JLabel LM5 = new JLabel(" ", i5, JLabel.CENTER);
+        BG5.add(Rb24);
 
-  
-
-   
-
-  Rb21= new JRadioButton("HP Probook 4530s");
-
-  Rb22= new JRadioButton("HP Pavilion DV6");
-
-  Rb23= new JRadioButton("Dell Vostro");
-
-  Rb24= new JRadioButton("Dell Inspiron N5110");
-
-  Rb25= new JRadioButton("Acer Aspire 5750");
-
-  
-
-  BG5.add(Rb21);
-
-  BG5.add(Rb22);
-
-  BG5.add(Rb23);
-
-  BG5.add(Rb24);
-
-  BG5.add(Rb25);
-
-  
+        BG5.add(Rb25);
 
  // b5.add( Box.createRigidArea(new Dimension(0,50)));
+        hb1.add(LM1);
 
-  hb1.add(LM1);
+        hb2.add(Rb21);
 
-  hb2.add(Rb21);
+        hb11.add(pl1);
 
-  hb11.add(pl1);
+        hb11.add(Box.createRigidArea(new Dimension(10, 0)));
 
-  hb11.add( Box.createRigidArea(new Dimension(10,0)));
+        hb11.add(pl2);
 
-  hb11.add(pl2);
+        hb1.add(LM2);
 
-  hb1.add(LM2);
+        hb2.add(Rb22);
 
-  hb2.add(Rb22);
+        b5.add(hb1);
 
-  
+        b5.add(hb2);
 
-  b5.add(hb1);
-
-  b5.add(hb2);
-
-  b5.add(hb11);  
+        b5.add(hb11);
 
   //b5.add( Box.createRigidArea(new Dimension(0,5)));
+        hb3.add(LM3);
 
-  
+        hb4.add(Rb23);
 
-  hb3.add(LM3);
+        hb3.add(LM4);
 
-  hb4.add(Rb23);
+        hb4.add(Rb24);
 
-  hb3.add(LM4);
+        hb12.add(pl3);
 
-  hb4.add(Rb24);
+        hb12.add(Box.createRigidArea(new Dimension(10, 0)));
 
-  hb12.add(pl3);
+        hb12.add(pl4);
 
-  hb12.add( Box.createRigidArea(new Dimension(10,0)));
+        b5.add(hb3);
 
-  hb12.add(pl4);
+        b5.add(hb4);
 
-  b5.add(hb3);
+        b5.add(hb12);
 
-  b5.add(hb4);
+        b5.add(LM5);
 
-  b5.add(hb12);
+        b5.add(Rb25);
 
-  
+        b5.add(pl5);
 
-  b5.add(LM5);
+        Rb21.addActionListener(new ActionListener() {
 
-  b5.add(Rb25);
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  b5.add(pl5);
+                    Sary[4] = Rb21.getText();
 
-  
+                    l1.setText(Sary[4]);
 
+                }
+            }
+        });
 
+        Rb22.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb21.addActionListener( new ActionListener() {           
+                    Sary[4] = Rb22.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l1.setText(Sary[4]);
 
-             Sary[4]= Rb21.getText(); 
+                }
+            }
+        });
 
-               l1.setText(Sary[4]);
+        Rb23.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb22.addActionListener( new ActionListener() {           
+                    Sary[4] = Rb23.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l1.setText(Sary[4]);
 
-             Sary[4]= Rb22.getText(); 
+                }
+            }
+        });
 
-               l1.setText(Sary[4]);
+        Rb24.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb23.addActionListener( new ActionListener() {           
+                    Sary[4] = Rb24.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l1.setText(Sary[4]);
 
-             Sary[4]= Rb23.getText(); 
+                }
+            }
+        });
 
-               l1.setText(Sary[4]);
+        Rb25.addActionListener(new ActionListener() {
 
-            }}});
+            public void actionPerformed(ActionEvent e) {
+                {
 
-  Rb24.addActionListener( new ActionListener() {           
+                    Sary[4] = Rb25.getText();
 
-            public void actionPerformed(ActionEvent e) {{
+                    l1.setText(Sary[4]);
 
-             Sary[4]= Rb24.getText(); 
+                }
+            }
+        });
 
-               l1.setText(Sary[4]);
+        b5.setVisible(false);
 
-            }}});
+        b5.setBounds(125, 0, 275, 450);
 
-  Rb25.addActionListener( new ActionListener() {           
+        b5.setBorder(BorderFactory.createTitledBorder(" "));
 
-            public void actionPerformed(ActionEvent e) {{
+        btnD = new JButton("MODEL");
 
-             Sary[4]= Rb25.getText(); 
+        btnD.setMaximumSize(new Dimension(120, 25));
 
-               l1.setText(Sary[4]);
+        con.add(b5);
 
-            }}});
+        btnD.addActionListener(new ActionListener() {
 
-  
+            public void actionPerformed(ActionEvent e) {
 
-  b5.setVisible(false);
+                b5.setVisible(true);
 
-  b5.setBounds(125, 0, 275, 450);
+                b1.setVisible(false);
 
-  b5.setBorder(BorderFactory.createTitledBorder(" "));
+                b3.setVisible(false);
 
-  btnD=new JButton("MODEL");
+                b4.setVisible(false);
 
-  btnD.setMaximumSize(new Dimension(120, 25));
+                b2.setVisible(false);
 
-  con.add(b5);
+                first.setVisible(false);
 
- 
-
- 
-
-  
-
-  btnD.addActionListener(new ActionListener() {
-
-           public void actionPerformed(ActionEvent e) {
-
-             b5.setVisible(true);   
-
-             b1.setVisible(false);
-
-             b3.setVisible(false);
-
-             b4.setVisible(false);
-
-             b2.setVisible(false);
-
-             first.setVisible(false);
-
-             
-
-           }});
+            }
+        });
 
 //Submit  
+        Sub = new JButton(" SUBMIT ");
 
-  Sub = new JButton(" SUBMIT ");
+        Sub.setMaximumSize(new Dimension(120, 25));
 
-  Sub.setMaximumSize(new Dimension(120, 25));
+        Sub.addActionListener(new ActionListener() {
 
-  Sub.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
 
-           public void actionPerformed(ActionEvent e) {
+                for (int x = 0; x < Sary.length; x++) {
+                    System.out.println(Sary[x]);
+                }
 
-            
+            }
+        });
 
-                  for(int x=0;x<Sary.length;x++)
+        buy.add(l1);
 
-                   System.out.println(Sary[x]);
+        buy.add(l2);
 
-                  
+        buy.add(l3);
 
-//                  ProductsSelectionLaptop1 PSL1 =new ProductsSelectionLaptop1();
-//
-//                  
-//
-//                  try {
-//
-//                   setVisible(false);
-//
-//     PSL1.getPrice(Sary);
-//
-//    } catch (ClassNotFoundException e1) {
-//
-//     // TODO Auto-generated catch block
-//
-//     e1.printStackTrace();
-//
-//   } catch (SQLException e1) {
-//
-//     // TODO Auto-generated catch block
-//
-//     e1.printStackTrace();
-//
-//    }   } catch (SQLException e1) {
-//
-//     // TODO Auto-generated catch block
-//
-//     e1.printStackTrace();
-//
-//    }
+        buy.add(l4);
 
-           }});
-
-  
-
-  buy.add(l1);
-
-  buy.add(l2);
-
-  buy.add(l3);
-
-  buy.add(l4);
-
-  buy.add(l5);
+        buy.add(l5);
 
   //remove
+        rem = new JButton(" Remove ");
 
-  rem = new JButton(" Remove ");  
+        rem.setMaximumSize(new Dimension(120, 25));
 
-  rem.setMaximumSize(new Dimension(120, 25));
+        rem.addActionListener(new ActionListener() {
 
-  rem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
 
-           public void actionPerformed(ActionEvent e) {
+                for (int x = 0; x < Sary.length; x++) {
+                    Sary[x] = " ";
+                }
 
-            for(int x=0;x<Sary.length;x++)
+                l1.setText(" ");
 
-                   Sary[x]=" ";
+                l2.setText(" ");
 
-            
+                l3.setText(" ");
 
-            l1.setText(" ");
+                l4.setText(" ");
 
-            l2.setText(" ");
+                l5.setText(" ");
 
-            l3.setText(" ");
+            }
+        });
 
-            l4.setText(" ");
+        choz.add(Box.createRigidArea(new Dimension(0, 50)));
 
-            l5.setText(" ");
+        choz.add(btnD);
 
-                   
+        choz.add(Box.createRigidArea(new Dimension(0, 5)));
 
-           }});
+        choz.add(btnP);
 
-  
+        choz.add(Box.createRigidArea(new Dimension(0, 5)));
 
-  
+        choz.add(btnR);
 
-  
+        choz.add(Box.createRigidArea(new Dimension(0, 5)));
 
-  
+        choz.add(btnH);
 
+        choz.add(Box.createRigidArea(new Dimension(0, 5)));
 
+        choz.add(btnV);
 
+        buy.add(Box.createRigidArea(new Dimension(0, 50)));
 
-  
+        ImageIcon image = new ImageIcon("1.jpg");
 
-  choz.add( Box.createRigidArea(new Dimension(0,50)));
+        JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
 
-  choz.add(btnD);
+        buy.add(label1);
 
-  choz.add( Box.createRigidArea(new Dimension(0,5)));
+        buy.add(Sub);
 
-  choz.add(btnP);
+        buy.add(rem);
 
-  choz.add( Box.createRigidArea(new Dimension(0,5)));
+        choz.setBorder(BorderFactory.createTitledBorder("Choose "));
 
-  choz.add(btnR);
+        choz.setBounds(0, 0, 125, 450);
 
-  choz.add( Box.createRigidArea(new Dimension(0,5)));
+        con.add(choz);
 
-  choz.add(btnH);
+    }
 
-  choz.add( Box.createRigidArea(new Dimension(0,5)));
+    public void back(String[] ar) {
 
-  choz.add(btnV);
+        for (int x = 0; x < 5; x++) {
 
-  
+            Sary[x] = ar[x];
 
-  buy.add( Box.createRigidArea(new Dimension(0,50)));
+        }
 
-  ImageIcon image = new ImageIcon("1.jpg");
+        l2.setText(Sary[0]);
 
-  JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
+        l3.setText(Sary[1]);
 
-  buy.add(label1); 
+        l4.setText(Sary[2]);
 
-  buy.add(Sub);
+        l5.setText(Sary[3]);
 
-  buy.add(rem);
+        l1.setText(Sary[4]);
 
-  choz.setBorder(BorderFactory.createTitledBorder("Choose "));
+    }
 
-  choz.setBounds(0, 0, 125, 450);
+    @Override
 
-  con.add(choz);
-
-  
-
-  
-
- }
-
- 
-
-    
-
-     public void back(String[] ar){
-
-      for(int x=0;x<5;x++){
-
-       Sary[x]= ar[x];
-
-      }
-
-      
-
-            l2.setText(Sary[0]);
-
-            l3.setText(Sary[1]);
-
-            l4.setText(Sary[2]);
-
-            l5.setText(Sary[3]);
-
-            l1.setText(Sary[4]);
-
-            
-
-     }
-
-
-
-
-
-
-
-  @Override
-
-  public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {
 
    // TODO Auto-generated method stub
-
-   
-
-  }
-
-
-
+    }
 
 }
