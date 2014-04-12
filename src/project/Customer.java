@@ -25,7 +25,7 @@ public class Customer extends JFrame implements ActionListener {
     final Box middle = Box.createVerticalBox();
     final Box buy = Box.createVerticalBox();
     final Box choz = Box.createVerticalBox();
-    public static JLabel currentpic = new JLabel("AA");
+    public static JLabel currentpic = new JLabel("AAA");
     
     public Customer() {
 
@@ -170,8 +170,11 @@ public class Customer extends JFrame implements ActionListener {
                 Image newimg = myimage.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
                 
-                currentpic = new JLabel(n);              
+                currentpic = new JLabel(n);           ///AAA doesnt change why?????   
+                currentpic.repaint();
                 middle.repaint();
+                con.repaint();
+                super.repaint();
                 break;
             }
     }
