@@ -4,9 +4,11 @@ package project;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
+import static project.Inventory.inventory;
 
 /*
  * FileChooserDemo.java uses these files:
@@ -19,6 +21,21 @@ public class FileChooserDemo extends JPanel
     JButton openButton, saveButton;
     JTextArea log;
     JFileChooser fc;
+    
+        final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
+    final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+    
+    
+    static private String ID;
+    static private String name;
+    static private double invoicePrice;
+    static private double sellingPrice;
+    static private String type;
+    static private int quantity ;
+//    static private ImageIcon picture ;
+//    static private String filename;
+//    
+    
     
     static public String finameChosen;
 
@@ -78,22 +95,52 @@ public class FileChooserDemo extends JPanel
         } else if (e.getSource() == saveButton) {
 
             System.out.println(finameChosen);
+            
+            Image myimage = null ;
+                try {
+                    myimage = ImageIO.read(new File(finameChosen));
+                } catch (IOException ioe) {
+                }
+                
+                 ImageIcon icon = new ImageIcon(myimage);
+            
+             Item i = new Item( icon,name, ID, type,invoicePrice,sellingPrice ,quantity,finameChosen);
+
+                inventory.add(i);
+                Inventory.save();
+                
+                Owner page = new Owner();
+                page.setLocation(x - 600, y - 300);
+                page.setVisible(true);
+
+               
                     
         }
     }
 
 
-    public static String createAndShowGUI() {
+    public static String createAndShowGUI(String othername, String otherID, String othertype, double otherinvoice,
+            double otherselling, int otherquantity) {
         //Create and set up the window.
-        JFrame frame = new JFrame("FileChooserDemo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        JFrame frame1 = new JFrame("FileChooserDemo");
+        //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+           
+           name= othername;
+           ID = otherID;
+           type = othertype;
+           invoicePrice = otherinvoice;
+           sellingPrice = otherselling;
+           quantity = otherquantity;
+    
+    
+        
         //Add content to the window.
-        frame.add(new FileChooserDemo());
+        frame1.add(new FileChooserDemo());
 
         //Display the window.
-        frame.pack();
-        frame.setVisible(true);
+        frame1.pack();
+        frame1.setVisible(true);
         return finameChosen;
         
     }

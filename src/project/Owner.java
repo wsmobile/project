@@ -32,7 +32,7 @@ class Owner extends JFrame {
 
         for (Item i : inventory) {
 
-            System.out.println(i.getName() + "\t" + i.getType() + "\t" + i.getID() + "\t" + i.getSellingPrice() + "\t" + i.getQuantity());
+            System.out.println(i.getName() + "\t" + i.getfilename());
 
         }
 
@@ -169,30 +169,34 @@ class Owner extends JFrame {
             //get info from panel and create new item
                 
                 //run filechooser and get name
-                String f = FileChooserDemo.createAndShowGUI();
-                
-                Image myimage = null ;
-                try {
-                    myimage = ImageIO.read(new File(f));
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
-                
-                 ImageIcon icon = new ImageIcon(myimage);
-                
-                
-                Item i = new Item(icon, nameField.getText(), IDField.getText(), typeField.getText(),
+                 
+                FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
                         Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
-                        Integer.parseInt(quantityField2.getText()), f);
-
-                inventory.add(i);
-                Inventory.save();
-
-                Owner page = new Owner();
-                page.setLocation(x - 600, y - 300);
-                page.setVisible(true);
-
-                Owner.super.dispose();
+                        Integer.parseInt(quantityField2.getText()));
+                
+//                Image myimage = null ;
+//                try {
+//                    myimage = ImageIO.read(new File(f));
+//                } catch (IOException ioe) {
+//                    ioe.printStackTrace();
+//                }
+//                
+//                 ImageIcon icon = new ImageIcon(myimage);
+                
+                
+                
+//                Item i = new Item( nameField.getText(), IDField.getText(), typeField.getText(),
+//                        Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
+//                        Integer.parseInt(quantityField2.getText()));
+//
+//                inventory.add(i);
+//                Inventory.save();
+//
+//                Owner page = new Owner();
+//                page.setLocation(x - 600, y - 300);
+//                page.setVisible(true);
+//
+//                Owner.super.dispose();
 
             }
         });
