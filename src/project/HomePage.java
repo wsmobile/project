@@ -83,7 +83,7 @@ public class HomePage {
                     JOptionPane.showMessageDialog(frame, "Username does not exists!\nPlease register.");
                 } else if ((tempusername.getText().equals("admin")) && (temppassword.getText().equals("pass"))) {
                     //open in seller mode
-                    System.out.println("sellermode");
+                    
                     Owner page = new Owner();
                     page.setLocation(x - 600, y - 300);
                     page.setVisible(true);
@@ -102,8 +102,7 @@ public class HomePage {
                         while ((sCurrentLine = br.readLine()) != null) {
                             if (sCurrentLine.equals(pass)) {
                                 //open in buyermode
-                                System.out.println("buyermode");
-                                
+                                                                
                                 Customer pagec = new Customer();
                                 pagec.setLocation(x - 325, y - 300);
                                 pagec.setVisible(true);
