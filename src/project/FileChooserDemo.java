@@ -10,11 +10,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
 import static project.Inventory.inventory;
 
-/*
- * FileChooserDemo.java uses these files:
- *   images/Open16.gif
- *   images/Save16.gif
- */
+
 public class FileChooserDemo extends JPanel
                              implements ActionListener {
     static private final String newline = "\n";
@@ -32,10 +28,7 @@ public class FileChooserDemo extends JPanel
     static private double sellingPrice;
     static private String type;
     static private int quantity ;
-//    static private ImageIcon picture ;
-//    static private String filename;
-//    
-    
+
     
     static public String finameChosen;
 
@@ -54,14 +47,12 @@ public class FileChooserDemo extends JPanel
 
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
-        //Create the open button.  We use the image from the JLF
-        //Graphics Repository (but we extracted it from the jar).
         openButton = new JButton("Open a File...");
         openButton.addActionListener(this);
 
         //Create the save button.  We use the image from the JLF
         //Graphics Repository (but we extracted it from the jar).
-        saveButton = new JButton("Save a File...");
+        saveButton = new JButton("Save  Item...");
         saveButton.addActionListener(this);
 
         //For layout purposes, put the buttons in a separate panel
@@ -102,9 +93,11 @@ public class FileChooserDemo extends JPanel
                 } catch (IOException ioe) {
                 }
                 
-                 ImageIcon icon = new ImageIcon(myimage);
+                Image newimg = myimage.getScaledInstance(30, 30,  java.awt.Image.SCALE_SMOOTH);  
+                ImageIcon icon = new ImageIcon(newimg); 
+
             
-             Item i = new Item( icon,name, ID, type,invoicePrice,sellingPrice ,quantity,finameChosen);
+                Item i = new Item( icon,name, ID, type,invoicePrice,sellingPrice ,quantity,finameChosen);
 
                 inventory.add(i);
                 Inventory.save();

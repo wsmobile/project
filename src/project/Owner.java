@@ -174,11 +174,6 @@ class Owner extends JFrame {
 
                 Owner.super.dispose();
 
-//                Owner page = new Owner();
-//                page.setLocation(x - 600, y - 300);
-//                page.setVisible(true);
-//
-//                Owner.super.dispose();
 
             }
         });
