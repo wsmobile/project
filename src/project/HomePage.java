@@ -103,6 +103,15 @@ public class HomePage {
                             if (sCurrentLine.equals(pass)) {
                                 //open in buyermode
                                 System.out.println("buyermode");
+                                
+                                Customer pagec = new Customer();
+                                pagec.setLocation(x - 325, y - 300);
+                                pagec.setVisible(true);
+                                
+                                frame.dispose();
+                              
+                                                               
+                                
                             } else {
                                 JOptionPane.showMessageDialog(frame, "Password does not match!\nPlease try again!");
                             }
