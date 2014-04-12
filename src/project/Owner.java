@@ -33,8 +33,9 @@ class Owner extends JFrame {
         for (Item i : inventory) {
 
             System.out.println(i.getName() + "\t" + i.getfilename());
-
+     
         }
+       
 
         //displaying in window
         setLayout(new GridLayout(inventory.size() + 10, 1));
@@ -119,11 +120,7 @@ class Owner extends JFrame {
         SpacePanel.add(new JLabel("To create new item fill the form below:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         add(SpacePanel);
 
-        //Scroll Pane
-//        final JPanel scrollPanel = new JPanel(new GridLayout(1, 1));
-//        JScrollPane horinScroll = new JScrollPane();
-//        scrollPanel.add(horinScroll);
-        
+     
 
 
 
@@ -183,7 +180,7 @@ class Owner extends JFrame {
 // Revenues = Sum of sell price for all sold items
 // Costs = Sum of invoice price for all items brought in the inventory (bought) 
 //        JPanel InfoPanel = new JPanel(new GridLayout(1, 14));
-//        //SpacePanel.add(new JLabel("TOTALS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
+//        SpacePanel.add(new JLabel("TOTALS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
 //        SpacePanel.add(new JLabel("Costs:"));
 //        SpacePanel.add(new JLabel("0"));
 //        SpacePanel.add(new JLabel("Revenues:"));
@@ -198,7 +195,7 @@ class Owner extends JFrame {
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Welcome");
-        setSize(1200, 400);
+        setSize(1250, 500);
         //setLocation(150, 150); ///not working location is being set from HomePage.java
     }
 
