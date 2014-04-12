@@ -46,13 +46,6 @@ class Owner extends JFrame {
 
             final JLabel nameLabel = new JLabel(inventory.get(i).getName());
 
-//            final JFormattedTextField nameField = new JFormattedTextField();
-//            nameField.setValue(inventory.get(i).getName());
-//            final JFormattedTextField typeField = new JFormattedTextField();
-//            typeField.setValue(inventory.get(i).getType());
-//            final JFormattedTextField IDField = new JFormattedTextField();
-//            IDField.setValue(inventory.get(i).getID());
-            
  
             JLabel imgLabel = new JLabel();
             imgLabel.setIcon(inventory.get(i).getpicture());
@@ -130,6 +123,11 @@ class Owner extends JFrame {
 //        final JPanel scrollPanel = new JPanel(new GridLayout(1, 1));
 //        JScrollPane horinScroll = new JScrollPane();
 //        scrollPanel.add(horinScroll);
+        
+
+
+
+
         //panel for creating new item
         JPanel CreateNewItemPanel = new JPanel(new GridLayout(1, 14));
         JButton CreateButton = new JButton("Create");
@@ -166,32 +164,16 @@ class Owner extends JFrame {
         //add(horinScroll);
         CreateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            //get info from panel and create new item
+            //call filechooser
                 
-                //run filechooser and get name
-                 
+                                 
                 FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
                         Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
                         Integer.parseInt(quantityField2.getText()));
                 
-//                Image myimage = null ;
-//                try {
-//                    myimage = ImageIO.read(new File(f));
-//                } catch (IOException ioe) {
-//                    ioe.printStackTrace();
-//                }
-//                
-//                 ImageIcon icon = new ImageIcon(myimage);
-                
-                
-                
-//                Item i = new Item( nameField.getText(), IDField.getText(), typeField.getText(),
-//                        Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
-//                        Integer.parseInt(quantityField2.getText()));
-//
-//                inventory.add(i);
-//                Inventory.save();
-//
+
+                Owner.super.dispose();
+
 //                Owner page = new Owner();
 //                page.setLocation(x - 600, y - 300);
 //                page.setVisible(true);
@@ -215,6 +197,10 @@ class Owner extends JFrame {
 //        SpacePanel.add(new JLabel("0"));
 //        
 //        add(InfoPanel);
+        
+        
+        
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Welcome");
         setSize(1200, 400);
