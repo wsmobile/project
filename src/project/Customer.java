@@ -25,7 +25,7 @@ public class Customer extends JFrame implements ActionListener {
     final Box middle = Box.createVerticalBox();
     final Box buy = Box.createVerticalBox();
     final Box choz = Box.createVerticalBox();
-    public static JLabel currentpic = new JLabel("AAA");
+    public static JLabel currentpic = new JLabel("");
     
     public Customer() {
 
@@ -167,10 +167,10 @@ public class Customer extends JFrame implements ActionListener {
                 } catch (IOException ioe) {
                 }
 
-                Image newimg = myimage.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+                Image newimg = myimage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
                 
-                currentpic.setText(n);           
+                currentpic.setIcon(icon);
                 currentpic.repaint();
 
                 
