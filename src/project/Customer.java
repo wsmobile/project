@@ -170,11 +170,10 @@ public class Customer extends JFrame implements ActionListener {
                 Image newimg = myimage.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
                 ImageIcon icon = new ImageIcon(newimg);
                 
-                currentpic = new JLabel(n);           ///AAA doesnt change why?????   
+                currentpic.setText(n);           
                 currentpic.repaint();
-                middle.repaint();
-                con.repaint();
-                super.repaint();
+
+                
                 break;
             }
     }
