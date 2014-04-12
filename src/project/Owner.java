@@ -141,7 +141,7 @@ class Owner extends JFrame {
 
         final JFormattedTextField quantityField2 = new JFormattedTextField();
 
-        CreateNewItemPanel.add(new JLabel("i.picture)"));
+        //CreateNewItemPanel.add(new JLabel("i.picture)"));
         CreateNewItemPanel.add(new JLabel("Name:"));
         CreateNewItemPanel.add(nameField);
         CreateNewItemPanel.add(new JLabel("Type:"));
