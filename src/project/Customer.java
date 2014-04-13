@@ -17,24 +17,24 @@ import static project.Inventory.inventory;
 
 public class Customer extends JFrame implements ActionListener {
 
-
-    public JLabel pl1, pl2, pl3, pl4, pl5;
-    public JLabel l1, l2, l3, l4, l5;
     public Container con;
-    public String[] Sary;
+   
     final Box middle = Box.createVerticalBox();
     final Box buy = Box.createVerticalBox();
     final Box choz = Box.createVerticalBox();
-    public static JLabel currentpic = new JLabel("");
+    
+    private static final JLabel currentpic = new JLabel("");
+    private static final JTextField currentquantity = new JTextField(2);
+    private static final JLabel currentname = new JLabel(" ");
+    private static final JLabel  currenttype = new JLabel(" ");
+    private static final JLabel  curentprice = new JLabel(" ");
+           
+    
     
     public Customer() {
 
         Inventory.load();
 
-        Sary = new String[5];
-        for (int x = 0; x < Sary.length; x++) {
-            Sary[x] = "Sary_OrderArray ";
-        }
 
         this.setVisible(true);
         this.setSize(600, 435);
@@ -45,51 +45,31 @@ public class Customer extends JFrame implements ActionListener {
 
         con.setBackground(Color.white);
 
-        l1 = new JLabel("Jlabel1");
-        l2 = new JLabel("JLabel2");
-        l3 = new JLabel("");
-        l4 = new JLabel("");
-        l5 = new JLabel("");
 
-
-  
+        
     
 
-//Submit
-        JButton Sub = new JButton(" SUBMIT ");
-        Sub.setMaximumSize(new Dimension(120, 25));
-        Sub.addActionListener(new ActionListener() {
+//Add button
+        JButton Add = new JButton(" Add to cart ");
+        Add.setMaximumSize(new Dimension(120, 25));
+        Add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                for (int x = 0; x < Sary.length; x++) {
-                    System.out.println(Sary[x]);
-                }
+                //add to cart function here
 
             }
         });
 
-        buy.add(l1);
-        buy.add(l2);
-        buy.add(l3);
-        buy.add(l4);
-        buy.add(l5);
 
         
         
-  //remove
-        JButton rem = new JButton(" Remove ");
-        rem.setMaximumSize(new Dimension(120, 25));
-        rem.addActionListener(new ActionListener() {
+  //Clear button
+        JButton Clear = new JButton(" Clear cart ");
+        Clear.setMaximumSize(new Dimension(120, 25));
+        Clear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                for (int x = 0; x < Sary.length; x++) {
-                    Sary[x] = " ";
-                }
-                l1.setText(" ");
-                l2.setText(" ");
-                l3.setText(" ");
-                l4.setText(" ");
-                l5.setText(" ");
+              //clear cart function here
 
             }
         });
@@ -106,7 +86,7 @@ public class Customer extends JFrame implements ActionListener {
             butt.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
-                    //call display function
+                   //call display function
                     displayItem(name);
                 }
             });
@@ -118,10 +98,16 @@ public class Customer extends JFrame implements ActionListener {
         
         
     /// Current item - middle box    
+        
         middle.setVisible(true);
         middle.setBounds(125, 0, 275, 450);
         middle.setBorder(BorderFactory.createTitledBorder(" "));
         middle.add(currentpic);
+        middle.add(currenttype);
+        middle.add(currentname);
+        middle.add(curentprice);
+        middle.add(currentquantity);
+        currentquantity.setVisible(false);
         con.add(middle);
    
         
@@ -137,8 +123,8 @@ public class Customer extends JFrame implements ActionListener {
 
         JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
         buy.add(label1);
-        buy.add(Sub);
-        buy.add(rem);
+        buy.add(Add);
+        buy.add(Clear);
 
     }
     
@@ -159,8 +145,7 @@ public class Customer extends JFrame implements ActionListener {
           
             if (i.getName().equals(n)) {
                                 
-                System.out.println("Display "+n);
-                
+                               
                 Image myimage = null ;
                 try {
                     myimage = ImageIO.read(new File(i.getfilename()));
@@ -172,7 +157,15 @@ public class Customer extends JFrame implements ActionListener {
                 
                 currentpic.setIcon(icon);
                 currentpic.repaint();
-
+                
+                currenttype.setText("Type: " + i.getType());
+                currentname.setText("Model: " + i.getName());
+                curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));
+                //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
+                
+                                             
+                middle.repaint();
+            
                 
                 break;
             }
