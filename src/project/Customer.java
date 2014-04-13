@@ -75,6 +75,19 @@ public class Customer extends JFrame implements ActionListener {
         });
         
         
+     //Checkout button
+        JButton Checkout = new JButton(" Checkout ");
+        Clear.setMaximumSize(new Dimension(120, 25));
+        Clear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+              //Checkout function here
+
+            }
+        });
+        
+        
+        
         
         //Choose items choz - first box
         for (int i = 0; i < inventory.size(); i++) {
@@ -122,9 +135,15 @@ public class Customer extends JFrame implements ActionListener {
         ImageIcon image = new ImageIcon("1.jpg");
 
         JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
+        
+        buy.add(new JLabel("current itmes in cart:"));
         buy.add(label1);
         buy.add(Add);
         buy.add(Clear);
+        buy.add(new JLabel("*********************************"));
+        buy.add(Checkout);
+        buy.add(new JLabel("*********************************"));
+        
 
     }
     
