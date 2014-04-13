@@ -18,17 +18,21 @@ public class ShoppingCart {
     public static ArrayList<Item> shoppingCart = new ArrayList<>();
     public static double total;
     
-    public static void addShoppingCart(String n)
-    {
-        for(Item i : inventory)
-        {
-            if(i.getName().equals(n))
-            {
-                Item newItem = new Item(i.getName(),"",i.getType(),0,i.getSellingPrice(),1);
-                shoppingCart.add(newItem);
+    public static void addShoppingCart(String n) {
+        for (Item i : inventory) {
+            for (Item j : shoppingCart) {
+                if (j.getName().equals(n)) {
+                    j.setQuantity(2);
+                } 
+                else {
+                    if (i.getName().equals(n)) {
+                        Item newItem = new Item(i.getName(), "", i.getType(), 0, i.getSellingPrice(), 1);
+                        shoppingCart.add(newItem);
+                    }
+                }
             }
         }
-        
+
     }
     
     public static void clearShoppingCart()
@@ -40,7 +44,7 @@ public class ShoppingCart {
     {
         for(Item i: shoppingCart)
         {
-            total+=i.getSellingPrice();
+            total+=i.getSellingPrice()*i.getQuantity();
         }
         return total;
     }
