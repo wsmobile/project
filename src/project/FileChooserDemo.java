@@ -17,6 +17,8 @@ public class FileChooserDemo extends JPanel
     JButton openButton, saveButton;
     JTextArea log;
     JFileChooser fc;
+    static private JFrame frame1 = new JFrame("Choosee a picture");
+    
     
         final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
     final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
@@ -101,7 +103,7 @@ public class FileChooserDemo extends JPanel
 
                 inventory.add(i);
                 Inventory.save();
-                
+                frame1.dispose();
                 Owner page = new Owner();
                 page.setLocation(x - 600, y - 300);
                 page.setVisible(true);
@@ -115,7 +117,7 @@ public class FileChooserDemo extends JPanel
     public static String createAndShowGUI(String othername, String otherID, String othertype, double otherinvoice,
             double otherselling, int otherquantity) {
         //Create and set up the window.
-        JFrame frame1 = new JFrame("FileChooserDemo");
+         frame1.setVisible(true);
         //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
            

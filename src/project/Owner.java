@@ -163,13 +163,18 @@ class Owner extends JFrame {
             public void actionPerformed(ActionEvent e) {
             //call filechooser
                 
-                                 
+                if(nameField.getText().isEmpty() || IDField.getText().isEmpty() || typeField.getText().isEmpty() ){
+                    
+                    
+                }   
+                else{
                 FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
                         Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
                         Integer.parseInt(quantityField2.getText()));
                 
 
                 Owner.super.dispose();
+                }
 
 
             }
