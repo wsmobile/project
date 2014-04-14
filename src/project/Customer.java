@@ -33,7 +33,7 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel  shoppingCartItemType = new JLabel(" ");
     private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
     private static final JLabel  shoppingCartItemQuantity = new JLabel(" ");  
-    
+    private static String currentName = "";
     
     public Customer() {
 
@@ -60,11 +60,11 @@ public class Customer extends JFrame implements ActionListener {
 //            {
             //final String name2 = i.getName();            
             Add.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    String name2=currentname.getText();
+                public void actionPerformed(ActionEvent e) {                                                      
                     //add to cart function here                  
-                    ShoppingCart.addShoppingCart(name2);
-                    displayShoppingCartItem(name2);
+                    ShoppingCart.addShoppingCart(currentName);
+                    
+                    displayShoppingCartItem(currentName);
                     System.out.println("total ; "+ ShoppingCart.ShoppingCartTotal());
                 }
             });
@@ -195,6 +195,7 @@ public class Customer extends JFrame implements ActionListener {
                 
                 currenttype.setText("Type: " + i.getType());
                 currentname.setText("Model: " + i.getName());
+                currentName=i.getName();
                 curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));
                 //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
                 
@@ -215,18 +216,7 @@ public class Customer extends JFrame implements ActionListener {
          
             if (i.getName().equals(n)) {
                                 
-                               
-//                Image myimage = null ;
-//                try {
-//                    myimage = ImageIO.read(new File(i.getfilename()));
-//                } catch (IOException ioe) {
-//                }
-//
-//                Image newimg = myimage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-//                ImageIcon icon = new ImageIcon(newimg);
-//                
-//                currentpic.setIcon(icon);
-//                currentpic.repaint();
+  
                 
                 shoppingCartItemType.setText("Type: " + i.getType());
                 shoppingCartItemName.setText("Model: " + i.getName());

@@ -20,7 +20,9 @@ public class ShoppingCart {
     
     public static void addShoppingCart(String n) {
         int k=0;
+        
         for (Item i : inventory) {
+            
             if (i.getName().equals(n)) {
                 
                     for (Item j : shoppingCart) {
@@ -32,9 +34,8 @@ public class ShoppingCart {
                             setShoppingCartItem(n);
                         } else {
 
-                            Item newItem = new Item(i.getName(), i.getID(), i.getType(),
-                                    i.getInvoicePrice(), i.getSellingPrice(), 1);
-                            shoppingCart.add(newItem);
+                            shoppingCart.add(new Item(i.getName(), i.getID(), i.getType(),
+                                    i.getInvoicePrice(), i.getSellingPrice(), 1));
 
                         }
             }
