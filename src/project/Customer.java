@@ -54,19 +54,21 @@ public class Customer extends JFrame implements ActionListener {
     
    
             //Add button
-            JButton Add = new JButton(" Add to cart ");
-      
+            JButton Add = new JButton(" Add to cart ");     
             Add.setMaximumSize(new Dimension(120, 25));
-            final String name2 = currentname.getText();
+            for(Item i : inventory)
+            {
+            final String name2 = i.getName();            
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-
+                    
                     //add to cart function here                  
                     ShoppingCart.addShoppingCart(name2);
                     displayShoppingCartItem(name2);
+                    System.out.println("total ; "+ ShoppingCart.total);
                 }
             });
-
+            }
         
         
         
@@ -207,35 +209,30 @@ public class Customer extends JFrame implements ActionListener {
     
     private void displayShoppingCartItem(String n){
         
-        
+       
         for (Item i : shoppingCart) {
-          System.out.println("ok");
+         
             if (i.getName().equals(n)) {
                                 
                                
-                Image myimage = null ;
-                try {
-                    myimage = ImageIO.read(new File(i.getfilename()));
-                } catch (IOException ioe) {
-                }
-
-                Image newimg = myimage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
-                ImageIcon icon = new ImageIcon(newimg);
-                
-                currentpic.setIcon(icon);
-                currentpic.repaint();
+//                Image myimage = null ;
+//                try {
+//                    myimage = ImageIO.read(new File(i.getfilename()));
+//                } catch (IOException ioe) {
+//                }
+//
+//                Image newimg = myimage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+//                ImageIcon icon = new ImageIcon(newimg);
+//                
+//                currentpic.setIcon(icon);
+//                currentpic.repaint();
                 
                 shoppingCartItemType.setText("Type: " + i.getType());
                 shoppingCartItemName.setText("Model: " + i.getName());
                 shoppingCartItemPrice.setText("Price: " + String.valueOf(i.getSellingPrice()));
                 shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
                 //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
-                System.out.println(shoppingCartItemType);
-                System.out.println(shoppingCartItemName);
-                System.out.println(shoppingCartItemPrice);
-                System.out.println(shoppingCartItemQuantity);
-                
-                
+                              
                                              
                 buy.repaint();
             

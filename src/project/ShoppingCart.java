@@ -19,21 +19,30 @@ public class ShoppingCart {
     public static double total;
     
     public static void addShoppingCart(String n) {
-        for (Item i : inventory) {
-            for (Item j : shoppingCart) {
-                if (j.getName().equals(n)) {
-                    j.setQuantity(2);
-                } 
-                else {
-                    if (i.getName().equals(n)) {
-                        Item newItem = new Item(i.getpicture(),i.getName(), i.getID(), i.getType(), 
-                                i.getInvoicePrice(), i.getSellingPrice(), 1, i.getfilename());
+              
+            for (Item i : inventory) {
+                if (i.getName().equals(n)) {
+                if (shoppingCart.isEmpty()) {
+
+                        Item newItem = new Item(i.getName(), i.getID(), i.getType(),
+                                i.getInvoicePrice(), i.getSellingPrice(), 1);
                         shoppingCart.add(newItem);
+                        
+                    } else {
+                        for (Item j : shoppingCart) {
+                            if (j.getName().equals(n)) {
+                                setShoppingCartItem(n,j.getQuantity());
+                            } else {
+
+                                Item newItem = new Item(i.getName(), i.getID(), i.getType(),
+                                        i.getInvoicePrice(), i.getSellingPrice(), 1);
+                                shoppingCart.add(newItem);
+
+                            }
+                        }
                     }
-                }
             }
         }
-
     }
     
     public static void clearShoppingCart()
@@ -50,4 +59,20 @@ public class ShoppingCart {
         return total;
     }
     
+    public static void setShoppingCartItem( String n, int q) {
+
+        int j = 0;
+        for (Item i : shoppingCart) {
+            j++;
+
+            if (i.getName().equals(n)) {
+                j--;
+                break;
+            }
+
+        }
+        shoppingCart.get(j).setQuantity(q+1);
+
+    }
+
 }
