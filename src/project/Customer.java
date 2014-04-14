@@ -213,7 +213,7 @@ public class Customer extends JFrame implements ActionListener {
         } else {
             for (Item i : shoppingCart) {
                 
-//                shoppingCartItemName.setText("Model: ");
+//                shoppingCartItemName.setText("Model: "+i.getName()+"\n");
                 
 //                shoppingCartItemType.setText("Model: " + i.getType());
                 shoppingCartItemPrice.setText("Total " + ShoppingCart.ShoppingCartTotal());
