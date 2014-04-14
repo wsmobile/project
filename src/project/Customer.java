@@ -207,9 +207,10 @@ public class Customer extends JFrame implements ActionListener {
     
     private void displayShoppingCartItem(){
         if (shoppingCart.isEmpty()) {
-            shoppingCartItemType.setText(" ");
+            
             shoppingCartItemName.setText(" ");
             shoppingCartItemPrice.setText(" ");
+            
         } else {
             for (Item i : shoppingCart) {
 
