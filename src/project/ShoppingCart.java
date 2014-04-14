@@ -16,24 +16,18 @@ import static project.Inventory.inventory;
 public class ShoppingCart {
     
     public static ArrayList<Item> shoppingCart = new ArrayList<>();
-    public static double total;
+    public static double total=0;
     
     public static void addShoppingCart(String n) {
-              int k=0;
+        int k=0;
         for (Item i : inventory) {
             if (i.getName().equals(n)) {
-                if (shoppingCart.isEmpty()) {
-
-                    Item newItem = new Item(i.getName(), i.getID(), i.getType(),
-                            i.getInvoicePrice(), i.getSellingPrice(), 1);
-                    shoppingCart.add(newItem);
-
-                } else {
+                
                     for (Item j : shoppingCart) {
                         if(j.getName().equals(n))
                             k=1;                        
                     }
-                }
+               
                 if (k==1) {
                             setShoppingCartItem(n);
                         } else {
@@ -49,14 +43,17 @@ public class ShoppingCart {
     
     public static void clearShoppingCart()
     {
+        
            shoppingCart.clear();
+          
     }
     
-    public static double total()
+    public static double ShoppingCartTotal()
     {
-        System.out.println("ok");
+       total=0;
         for(Item i: shoppingCart)
         {
+//             System.out.println(i.getSellingPrice());
             total+=i.getSellingPrice()*i.getQuantity();
         }
         return total;
