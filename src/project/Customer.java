@@ -56,19 +56,19 @@ public class Customer extends JFrame implements ActionListener {
             //Add button
             JButton Add = new JButton(" Add to cart ");     
             Add.setMaximumSize(new Dimension(120, 25));
-            for(Item i : inventory)
-            {
-            final String name2 = i.getName();            
+//            for(Item i : inventory)
+//            {
+            //final String name2 = i.getName();            
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    double kk=ShoppingCart.ShoppingCartTotal();
+                    String name2=currentname.getText();
                     //add to cart function here                  
                     ShoppingCart.addShoppingCart(name2);
                     displayShoppingCartItem(name2);
-                    System.out.println("total ; "+ kk);
+                    System.out.println("total ; "+ ShoppingCart.ShoppingCartTotal());
                 }
             });
-            }
+            //}
         
         
         
@@ -80,6 +80,7 @@ public class Customer extends JFrame implements ActionListener {
 
               //clear cart function here
               ShoppingCart.clearShoppingCart();
+              buy.repaint();
 
             }
         });
