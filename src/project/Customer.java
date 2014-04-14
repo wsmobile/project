@@ -87,8 +87,14 @@ public class Customer extends JFrame implements ActionListener {
         Clear.setMaximumSize(new Dimension(120, 25));
         Clear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-              //Checkout function here
+//                String names=" ";
+//              //Checkout function here
+//                for(Item i: shoppingCart)
+//                {
+//                    names+="Model: "+i.getName()+"\n";
+//                }
+//                JOptionPane.showMessageDialog(null ,"total");
+//                
 
             }
         });
