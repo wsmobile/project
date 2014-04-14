@@ -29,10 +29,10 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-    private static final JLabel shoppingCartItemName = new JLabel(" ");
-    private static final JLabel  shoppingCartItemType = new JLabel(" ");
-    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
-    private static final JLabel  shoppingCartItemQuantity = new JLabel(" ");  
+    private static final JLabel shoppingCartItemName = new JLabel("A ");
+    private static final JLabel  shoppingCartItemType = new JLabel(" B");
+    private static final JLabel  shoppingCartItemPrice = new JLabel("C ");  
+    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");  
     private static String currentName = "";
     
     public Customer() {
@@ -134,6 +134,7 @@ public class Customer extends JFrame implements ActionListener {
         middle.add(curentprice);
         middle.add(currentquantity);
         currentquantity.setVisible(false);
+      //  currentquantity.setMaximumSize(new Dimension(50,50));
         con.add(middle);
    
         
@@ -143,19 +144,20 @@ public class Customer extends JFrame implements ActionListener {
         buy.setBorder(BorderFactory.createTitledBorder("Selected items"));
         con.add(buy);
 
-        buy.add(Box.createRigidArea(new Dimension(0, 50)));
+       // buy.add(Box.createRigidArea(new Dimension(0, 50)));
 
         ImageIcon image = new ImageIcon("1.jpg");
 
         JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
         
         buy.add(new JLabel("current itmes in cart:"));
-        buy.add(label1);
-        buy.add(Add);
+
         buy.add(shoppingCartItemType);
         buy.add(shoppingCartItemName);
         buy.add(shoppingCartItemPrice);
         buy.add(shoppingCartItemQuantity);
+                buy.add(label1);
+        buy.add(Add);
         //buy.add(Add);
         buy.add(Clear);
         buy.add(new JLabel("*********************************"));
@@ -199,7 +201,7 @@ public class Customer extends JFrame implements ActionListener {
                 currentname.setText("Model: " + i.getName());
                 currentName=i.getName();
                 curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));
-                //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
+               // currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
                 
                                              
                 middle.repaint();
