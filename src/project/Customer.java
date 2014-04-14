@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import static project.FileChooserDemo.finameChosen;
 import static project.Inventory.inventory;
+import static project.ShoppingCart.shoppingCart;
 
 
 
@@ -28,7 +29,9 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-           
+     private static final JLabel shoppingCartItemName = new JLabel(" ");
+    private static final JLabel  shoppingCartItemType = new JLabel(" ");
+    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");       
     
     
     public Customer() {
@@ -59,6 +62,7 @@ public class Customer extends JFrame implements ActionListener {
 
                     //add to cart function here
                     ShoppingCart.addShoppingCart(name2);
+                    displayShoppingCartItem(name2);
                 }
             });
 
@@ -183,6 +187,41 @@ public class Customer extends JFrame implements ActionListener {
                 currenttype.setText("Type: " + i.getType());
                 currentname.setText("Model: " + i.getName());
                 curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));
+                //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
+                
+                                             
+                middle.repaint();
+            
+                
+                break;
+            }
+    }
+
+}
+    
+    private void displayShoppingCartItem(String n){
+        
+        
+        for (Item i : shoppingCart) {
+          
+            if (i.getName().equals(n)) {
+                                
+                               
+                Image myimage = null ;
+                try {
+                    myimage = ImageIO.read(new File(i.getfilename()));
+                } catch (IOException ioe) {
+                }
+
+                Image newimg = myimage.getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(newimg);
+                
+                currentpic.setIcon(icon);
+                currentpic.repaint();
+                
+                shoppingCartItemType.setText("Type: " + i.getType());
+                shoppingCartItemName.setText("Model: " + i.getName());
+                shoppingCartItemPrice.setText("Price: " + String.valueOf(i.getSellingPrice()));
                 //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
                 
                                              

@@ -26,8 +26,8 @@ public class ShoppingCart {
                 } 
                 else {
                     if (i.getName().equals(n)) {
-                        Item newItem = new Item(i.getName(), i.getID(), i.getType(), 
-                                i.getInvoicePrice(), i.getSellingPrice(), 1);
+                        Item newItem = new Item(i.getpicture(),i.getName(), i.getID(), i.getType(), 
+                                i.getInvoicePrice(), i.getSellingPrice(), 1, i.getfilename());
                         shoppingCart.add(newItem);
                     }
                 }
