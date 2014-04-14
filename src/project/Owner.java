@@ -20,13 +20,14 @@ class Owner extends JFrame {
 
     Owner() {
 
-        //use to initialize inventory
+         //use to initialize inventory
 //   try { 
 //  Inventory.createTestItemz(); } catch (IOException ioe) {
 //            ioe.printStackTrace();
 //        }
 //  Inventory.save();
 //  
+        
   Inventory.load();
         
 
@@ -163,9 +164,11 @@ class Owner extends JFrame {
             public void actionPerformed(ActionEvent e) {
             //call filechooser
                 
-                if(nameField.getText().isEmpty() || IDField.getText().isEmpty() || typeField.getText().isEmpty() ){
+                if(nameField.getText().isEmpty() || IDField.getText().isEmpty() || typeField.getText().isEmpty() 
+                        ||invoicepriceField2.getText().isEmpty() || sellingpriceField2.getText().isEmpty()
+                        ||quantityField2.getText().isEmpty() ){
                     
-                    
+                    JOptionPane.showMessageDialog(null,"Please fill out all fields!");
                 }   
                 else{
                 FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
@@ -194,14 +197,14 @@ class Owner extends JFrame {
 //        SpacePanel.add(new JLabel("0"));
 //        
 //        add(InfoPanel);
-        
+//        
         
         
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Welcome");
         setSize(1250, 500);
-        //setLocation(150, 150); ///not working location is being set from HomePage.java
+       
     }
 
 }
