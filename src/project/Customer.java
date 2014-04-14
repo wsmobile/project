@@ -55,19 +55,19 @@ public class Customer extends JFrame implements ActionListener {
    
             //Add button
             JButton Add = new JButton(" Add to cart ");
-       for (int i = 0; i < inventory.size(); i++) {
+      
             Add.setMaximumSize(new Dimension(120, 25));
-            final String name2 = inventory.get(i).getName();
+            final String name2 = currentname.getText();
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
-                    //add to cart function here
+                    //add to cart function here                  
                     ShoppingCart.addShoppingCart(name2);
                     displayShoppingCartItem(name2);
                 }
             });
 
-        }
+        
         
         
   //Clear button
@@ -146,16 +146,17 @@ public class Customer extends JFrame implements ActionListener {
         
         buy.add(new JLabel("current itmes in cart:"));
         buy.add(label1);
+        buy.add(Add);
         buy.add(shoppingCartItemType);
         buy.add(shoppingCartItemName);
         buy.add(shoppingCartItemPrice);
         buy.add(shoppingCartItemQuantity);
-        buy.add(Add);
+        //buy.add(Add);
         buy.add(Clear);
         buy.add(new JLabel("*********************************"));
         buy.add(Checkout);
         buy.add(new JLabel("*********************************"));
-        
+        con.add(buy);
 
     }
     
@@ -208,7 +209,7 @@ public class Customer extends JFrame implements ActionListener {
         
         
         for (Item i : shoppingCart) {
-          
+          System.out.println("ok");
             if (i.getName().equals(n)) {
                                 
                                
@@ -229,9 +230,14 @@ public class Customer extends JFrame implements ActionListener {
                 shoppingCartItemPrice.setText("Price: " + String.valueOf(i.getSellingPrice()));
                 shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
                 //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
+                System.out.println(shoppingCartItemType);
+                System.out.println(shoppingCartItemName);
+                System.out.println(shoppingCartItemPrice);
+                System.out.println(shoppingCartItemQuantity);
+                
                 
                                              
-                middle.repaint();
+                buy.repaint();
             
                 
                 break;
