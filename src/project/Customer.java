@@ -29,9 +29,10 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-     private static final JLabel shoppingCartItemName = new JLabel(" ");
+    private static final JLabel shoppingCartItemName = new JLabel(" ");
     private static final JLabel  shoppingCartItemType = new JLabel(" ");
-    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");       
+    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
+    private static final JLabel  shoppingCartItemQuantity = new JLabel(" ");  
     
     
     public Customer() {
@@ -145,6 +146,10 @@ public class Customer extends JFrame implements ActionListener {
         
         buy.add(new JLabel("current itmes in cart:"));
         buy.add(label1);
+        buy.add(shoppingCartItemType);
+        buy.add(shoppingCartItemName);
+        buy.add(shoppingCartItemPrice);
+        buy.add(shoppingCartItemQuantity);
         buy.add(Add);
         buy.add(Clear);
         buy.add(new JLabel("*********************************"));
@@ -222,6 +227,7 @@ public class Customer extends JFrame implements ActionListener {
                 shoppingCartItemType.setText("Type: " + i.getType());
                 shoppingCartItemName.setText("Model: " + i.getName());
                 shoppingCartItemPrice.setText("Price: " + String.valueOf(i.getSellingPrice()));
+                shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
                 //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
                 
                                              
