@@ -55,20 +55,16 @@ public class Customer extends JFrame implements ActionListener {
    
             //Add button
             JButton Add = new JButton(" Add to cart ");     
-            Add.setMaximumSize(new Dimension(120, 25));
-//            for(Item i : inventory)
-//            {
-            //final String name2 = i.getName();            
+            Add.setMaximumSize(new Dimension(120, 25));    
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {                                                      
                     //add to cart function here                  
-                    ShoppingCart.addShoppingCart(currentName);
-                    
-                    displayShoppingCartItem(currentName);
+                    ShoppingCart.addShoppingCart(currentName);                    
+                    displayShoppingCartItem();
                     System.out.println("total ; "+ ShoppingCart.ShoppingCartTotal());
                 }
             });
-            //}
+           
         
         
         
@@ -80,7 +76,7 @@ public class Customer extends JFrame implements ActionListener {
 
               //clear cart function here
               ShoppingCart.clearShoppingCart();
-              buy.repaint();
+              displayShoppingCartItem();
 
             }
         });
@@ -209,28 +205,23 @@ public class Customer extends JFrame implements ActionListener {
 
 }
     
-    private void displayShoppingCartItem(String n){
-        
-       
-        for (Item i : shoppingCart) {
-         
-            if (i.getName().equals(n)) {
-                                
-  
-                
-                shoppingCartItemType.setText("Type: " + i.getType());
+    private void displayShoppingCartItem(){
+        if (shoppingCart.isEmpty()) {
+            shoppingCartItemType.setText(" ");
+            shoppingCartItemName.setText(" ");
+            shoppingCartItemPrice.setText(" ");
+        } else {
+            for (Item i : shoppingCart) {
+
                 shoppingCartItemName.setText("Model: " + i.getName());
-                shoppingCartItemPrice.setText("Price: " + String.valueOf(i.getSellingPrice()));
-                shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
-                //currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
-                              
-                                             
-                buy.repaint();
-            
-                
-                break;
+//                shoppingCartItemType.setText("Model: " + i.getType());
+                shoppingCartItemPrice.setText("Total " + ShoppingCart.ShoppingCartTotal());
+//                shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
+               
+
             }
-    }
+        }
+        buy.repaint();
 
 }
 }
