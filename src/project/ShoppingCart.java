@@ -19,28 +19,30 @@ public class ShoppingCart {
     public static double total;
     
     public static void addShoppingCart(String n) {
-              
-            for (Item i : inventory) {
-                if (i.getName().equals(n)) {
+              int k=0;
+        for (Item i : inventory) {
+            if (i.getName().equals(n)) {
                 if (shoppingCart.isEmpty()) {
 
-                        Item newItem = new Item(i.getName(), i.getID(), i.getType(),
-                                i.getInvoicePrice(), i.getSellingPrice(), 1);
-                        shoppingCart.add(newItem);
-                        
-                    } else {
-                        for (Item j : shoppingCart) {
-                            if (j.getName().equals(n)) {
-                                setShoppingCartItem(n,j.getQuantity());
-                            } else {
+                    Item newItem = new Item(i.getName(), i.getID(), i.getType(),
+                            i.getInvoicePrice(), i.getSellingPrice(), 1);
+                    shoppingCart.add(newItem);
 
-                                Item newItem = new Item(i.getName(), i.getID(), i.getType(),
-                                        i.getInvoicePrice(), i.getSellingPrice(), 1);
-                                shoppingCart.add(newItem);
-
-                            }
-                        }
+                } else {
+                    for (Item j : shoppingCart) {
+                        if(j.getName().equals(n))
+                            k=1;                        
                     }
+                }
+                if (k==1) {
+                            setShoppingCartItem(n);
+                        } else {
+
+                            Item newItem = new Item(i.getName(), i.getID(), i.getType(),
+                                    i.getInvoicePrice(), i.getSellingPrice(), 1);
+                            shoppingCart.add(newItem);
+
+                        }
             }
         }
     }
@@ -52,6 +54,7 @@ public class ShoppingCart {
     
     public static double total()
     {
+        System.out.println("ok");
         for(Item i: shoppingCart)
         {
             total+=i.getSellingPrice()*i.getQuantity();
@@ -59,19 +62,21 @@ public class ShoppingCart {
         return total;
     }
     
-    public static void setShoppingCartItem( String n, int q) {
+    public static void setShoppingCartItem( String n) {
 
         int j = 0;
+        int q = 0;
         for (Item i : shoppingCart) {
             j++;
 
             if (i.getName().equals(n)) {
                 j--;
+                q=i.getQuantity()+1;
                 break;
             }
 
         }
-        shoppingCart.get(j).setQuantity(q+1);
+        shoppingCart.get(j).setQuantity(q);
 
     }
 

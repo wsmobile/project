@@ -61,11 +61,11 @@ public class Customer extends JFrame implements ActionListener {
             final String name2 = i.getName();            
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    
+                    double kk=ShoppingCart.total;
                     //add to cart function here                  
                     ShoppingCart.addShoppingCart(name2);
                     displayShoppingCartItem(name2);
-                    System.out.println("total ; "+ ShoppingCart.total);
+                    System.out.println("total ; "+ kk);
                 }
             });
             }
