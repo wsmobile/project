@@ -29,10 +29,11 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-    private static final JLabel shoppingCartItemName = new JLabel("A ");
-    private static final JLabel  shoppingCartItemType = new JLabel(" B");
-    private static final JLabel  shoppingCartItemPrice = new JLabel("C ");  
-    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");  
+    private static final JLabel shoppingCartItemName = new JLabel(" ");
+//    private static final JLabel  shoppingCartItemType = new JLabel(" B");
+    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
+//    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
+    private static final ArrayList<JLabel> cartItems = new ArrayList();
     private static String currentName = "";
     
     public Customer() {
@@ -61,7 +62,7 @@ public class Customer extends JFrame implements ActionListener {
                     //add to cart function here                  
                     ShoppingCart.addShoppingCart(currentName);                    
                     displayShoppingCartItem();
-                    System.out.println("total ; "+ ShoppingCart.ShoppingCartTotal());
+                    
                 }
             });
            
@@ -152,11 +153,18 @@ public class Customer extends JFrame implements ActionListener {
         
         buy.add(new JLabel("current itmes in cart:"));
 
-        buy.add(shoppingCartItemType);
-        buy.add(shoppingCartItemName);
-        buy.add(shoppingCartItemPrice);
-        buy.add(shoppingCartItemQuantity);
-                buy.add(label1);
+//        buy.add(shoppingCartItemType);
+        for(JLabel j : cartItems)
+        {
+            JLabel newLabel = new JLabel();
+            newLabel.setText(j.getText());
+            System.out.println(newLabel.getText());
+            buy.add(newLabel);
+        }
+        
+//        buy.add(shoppingCartItemPrice);
+//        buy.add(shoppingCartItemQuantity);
+        buy.add(label1);
         buy.add(Add);
         //buy.add(Add);
         buy.add(Clear);
@@ -200,12 +208,9 @@ public class Customer extends JFrame implements ActionListener {
                 currenttype.setText("Type: " + i.getType());
                 currentname.setText("Model: " + i.getName());
                 currentName=i.getName();
-                curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));
-               // currentquantity.setVisible(true); //text field too big ignores size and fills up rest of free space
-                
+                curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));                         
                                              
-                middle.repaint();
-            
+                middle.repaint();           
                 
                 break;
             }
@@ -221,15 +226,14 @@ public class Customer extends JFrame implements ActionListener {
         } else {
             for (Item i : shoppingCart) {
                 
-//                shoppingCartItemName.setText("Model: "+i.getName()+"\n");
+                shoppingCartItemName.setText("Model: "+i.getName()+"  Qty: "+i.getQuantity());
+                cartItems.add(shoppingCartItemName);
                 
-//                shoppingCartItemType.setText("Model: " + i.getType());
-                shoppingCartItemPrice.setText("Total " + ShoppingCart.ShoppingCartTotal());
-//                shoppingCartItemQuantity.setText("Quantity: "+i.getQuantity());  
-               
-
             }
+            shoppingCartItemPrice.setText("Total: " + ShoppingCart.ShoppingCartTotal());
+            cartItems.add(shoppingCartItemPrice);
         }
+        
         buy.repaint();
 
 }
