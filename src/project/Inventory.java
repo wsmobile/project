@@ -167,8 +167,8 @@ public static void displayProfits(){
                 String sCurrentLine;
                 br = new BufferedReader(new FileReader("profits.txt"));
                 while ((sCurrentLine = br.readLine()) != null) {
-                    revenue = Double.valueOf(sCurrentLine);
-                    costs = Double.valueOf(sCurrentLine);
+                    revenue = Double.valueOf(sCurrentLine); ///when fixed here fix on bottom as well
+                    costs = Double.valueOf(sCurrentLine);           ///c.add( sCurrentLine);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
