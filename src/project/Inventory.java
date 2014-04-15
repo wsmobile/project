@@ -54,23 +54,21 @@ public class Inventory implements java.io.Serializable {
         int k = 0;
         int j = 0;
         for (Item i : inventory) {
-            
+
             for (Item l : shoppingCart) {
 
                 if (i.getName().equals(l.getName())) {
                     System.out.println("ok");
-                    k=i.getQuantity()-l.getQuantity();
+                    k = i.getQuantity() - l.getQuantity();
                     inventory.get(j).setQuantity(k);
-                   
+
                 }
             }
             j++;
         }
-       
-
 
     }
-    
+
     public static void removeInvetoryItem(String name) {
 
         for (int i = 0; i < inventory.size(); i++) {
@@ -98,20 +96,17 @@ public class Inventory implements java.io.Serializable {
 
     //testing create
     public static void createTestItemz() throws IOException {
-        
+
         Image myimage = ImageIO.read(new File("iphone4.jpg"));
         ImageIcon icon = new ImageIcon(myimage);
-        
+
         Image myimage1 = ImageIO.read(new File("iphone5.jpg"));
         ImageIcon icon1 = new ImageIcon(myimage1);
-        
 
-
-
-        Item iphone4s = new Item(icon,"iPhone4", "ID123", "apple", 100.00, 200.00, 1);
+        Item iphone4s = new Item(icon, "iPhone4", "ID123", "apple", 100.00, 200.00, 1);
         inventory.add(iphone4s);
 
-        Item iphone5 = new Item(icon1,"iPhone5", "ID4545", "apple", 150.00, 200.00, 2);
+        Item iphone5 = new Item(icon1, "iPhone5", "ID4545", "apple", 150.00, 200.00, 2);
         inventory.add(iphone5);
 
         Item htcone = new Item("HTC", "ID7474", "One", 110.00, 210.00, 3);
@@ -150,26 +145,22 @@ public class Inventory implements java.io.Serializable {
         }
     }
 
-public static void displayProfits(){
+    public static void displayProfits() {
 
 // Profit = Revenues - Costs, 
 // Revenues = Sum of sell price for all sold items
 // Costs = Sum of invoice price for all items brought in the inventory (bought)
-    //I did cost  = sum of invoice price for all items sold, otherwise it will be negative for a while
-    //makes no sence to calculate
-        
-        double revenue = 0.0 ;
-        double costs = 0.0 ;
+        //I did cost  = sum of invoice price for all items sold, otherwise it will be negative for a while
+        //makes no sence to calculate
+        double revenue = 0.0;
+        double costs = 0.0;
         File f = new File("profits.txt");
         if (f.exists()) {//open and read revenue and costs
             BufferedReader br = null;
             try {
-                String sCurrentLine;
                 br = new BufferedReader(new FileReader("profits.txt"));
-                while ((sCurrentLine = br.readLine()) != null) {
-                    revenue = Double.valueOf(sCurrentLine); ///when fixed here fix on bottom as well
-                    costs = Double.valueOf(sCurrentLine);           ///c.add( sCurrentLine);
-                }
+                revenue = Double.valueOf(br.readLine());
+                costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -181,52 +172,48 @@ public static void displayProfits(){
                     ex.printStackTrace();
                 }
             }
-        } 
-        double profit = revenue-costs;
+        }
+        double profit = revenue - costs;
         String sProfit = Double.toString(profit);
         String sRevenue = Double.toString(revenue);
         String sCosts = Double.toString(costs);
-        
+
         final JFrame totals = new JFrame();
         totals.setVisible(true);
         totals.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        
-        totals.setLayout(new GridLayout(4,1));
-        totals.add(new JLabel("Profit: "+sProfit));
-        totals.add(new JLabel("Revenues: "+sRevenue));
-        totals.add(new JLabel("Costs: "+sCosts));
-        
+
+        totals.setLayout(new GridLayout(4, 1));
+        totals.add(new JLabel("Total Profit: " + sProfit+" $"));
+        totals.add(new JLabel("Revenues: " + sRevenue+" $"));
+        totals.add(new JLabel("Costs: " + sCosts+" $"));
+
         JButton ok = new JButton("OK");
         totals.add(ok, BorderLayout.SOUTH);
         ok.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 
-                    totals.dispose();
+                totals.dispose();
 
-                }
-            }); 
+            }
+        });
         int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
         int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         totals.setLocation(x - 600, y - 300);
         totals.setSize(200, 200);
         totals.repaint();
-       // totals.pack();
-     
- }
- 
+
+    }
+
     public static void addtoProfits(double inv, double sel, int quant) {
-        double revenue = 0.0 ;
-        double costs = 0.0 ;
+        double revenue = 0.0;
+        double costs = 0.0;
         File f = new File("profits.txt");
         if (f.exists()) {//open and read revenue and costs
             BufferedReader br = null;
             try {
-                String sCurrentLine;
                 br = new BufferedReader(new FileReader("profits.txt"));
-                while ((sCurrentLine = br.readLine()) != null) {
-                    revenue = Double.valueOf(sCurrentLine);
-                    costs = Double.valueOf(sCurrentLine);
-                }
+                revenue = Double.valueOf(br.readLine()); ///when fixed here fix on bottom as well
+                costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -238,17 +225,16 @@ public static void displayProfits(){
                     ex.printStackTrace();
                 }
             }
-        } 
-        
-       revenue = revenue + (sel*quant);
-       costs = costs + (inv*quant);
-       
-               
+        }
+
+        revenue = revenue + (sel * quant);
+        costs = costs + (inv * quant);
+
         //create and initialize profit file
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("profits.txt"));
 
-            out.write(revenue+"\n"+costs);
+            out.write(revenue + "\n" + costs);
 //outStream.newLine();
 //outStream.write(output);
 //outStream.close();
@@ -258,6 +244,5 @@ public static void displayProfits(){
         }
 
     }
- 
 
 }
