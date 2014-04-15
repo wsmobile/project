@@ -25,13 +25,13 @@ public class Customer extends JFrame implements ActionListener {
     final Box choz = Box.createVerticalBox();
     
     private static final JLabel currentpic = new JLabel("");
-    private static final JTextField currentquantity = new JTextField(2);
+    private static final JLabel currentquantity = new JLabel("");
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-    private static final JLabel shoppingCartItemName = new JLabel(" ");
+//    private static final JLabel shoppingCartItemName = new JLabel(" ");
 //    private static final JLabel  shoppingCartItemType = new JLabel(" B");
-    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
+//    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
 //    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
     public static final JLabel cartItems = new  JLabel(" ");
     
@@ -96,7 +96,7 @@ public class Customer extends JFrame implements ActionListener {
 //                    names+="Model: "+i.getName()+"\n";
 //                }
 //                JOptionPane.showMessageDialog(null ,"total");
-//                
+                ShoppingCart.setInvetoryItemQuantity();
 
             }
         });
@@ -135,7 +135,7 @@ public class Customer extends JFrame implements ActionListener {
         middle.add(currentname);
         middle.add(curentprice);
         middle.add(currentquantity);
-        currentquantity.setVisible(false);
+        //currentquantity.setVisible(false);
       //  currentquantity.setMaximumSize(new Dimension(50,50));
         con.add(middle);
    
@@ -206,7 +206,7 @@ public class Customer extends JFrame implements ActionListener {
                 currentname.setText("Model: " + i.getName());
                 currentName=i.getName();
                 curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));                         
-                                             
+                currentquantity.setText("Quantity: " + i.getQuantity());
                 middle.repaint();           
                 
                 break;
@@ -219,7 +219,7 @@ public class Customer extends JFrame implements ActionListener {
         String k="<html><br>" ;
         if (shoppingCart.isEmpty()) {
   
-            shoppingCartItemPrice.setText(" ");
+//            shoppingCartItemPrice.setText(" ");
             
         } else {
             for (Item i : shoppingCart) {
