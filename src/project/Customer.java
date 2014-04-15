@@ -30,10 +30,11 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
     private static final JLabel shoppingCartItemName = new JLabel(" ");
-    private static final JLabel  shoppingCartItemType = new JLabel(" B");
+//    private static final JLabel  shoppingCartItemType = new JLabel(" B");
     private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
-    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
-    public static final JTextArea cartItems = new  JTextArea(" ");
+//    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
+    public static final JLabel cartItems = new  JLabel(" ");
+    
     private static String currentName = "";
     
     public Customer() {
@@ -158,7 +159,7 @@ public class Customer extends JFrame implements ActionListener {
        
 //        buy.repaint();
         buy.add(cartItems); 
-        buy.add(shoppingCartItemPrice);
+//        buy.add(shoppingCartItemPrice);
 //        buy.add(shoppingCartItemQuantity);
         buy.add(label1);
         buy.add(Add);
@@ -215,7 +216,7 @@ public class Customer extends JFrame implements ActionListener {
 }
     
     private void displayShoppingCartItem(){
-        String k="" ;
+        String k="<html><br>" ;
         if (shoppingCart.isEmpty()) {
   
             shoppingCartItemPrice.setText(" ");
@@ -223,15 +224,15 @@ public class Customer extends JFrame implements ActionListener {
         } else {
             for (Item i : shoppingCart) {
                 
-                k+="Model: "+i.getName()+"  Qty: "+i.getQuantity()+"\n";
+                k+="Model: "+i.getName()+"  Qty: "+i.getQuantity()+"<br>";
 //                shoppingCartItemName.setText("Model: "+i.getName()+"  Qty: "+i.getQuantity());
-                cartItems.setText(k);
-                
+                                
             }
-            shoppingCartItemPrice.setText("Total: " + ShoppingCart.ShoppingCartTotal());
+            k+="<br>Total: " + ShoppingCart.ShoppingCartTotal()+"</html>";
+//            shoppingCartItemPrice.setText("Total: " + ShoppingCart.ShoppingCartTotal());
 //            cartItems.add(shoppingCartItemPrice);
         }
-        
+        cartItems.setText(k);
         buy.repaint();
 
 }
