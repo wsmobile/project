@@ -38,6 +38,25 @@ public class Inventory implements java.io.Serializable {
 
     }
 
+    public static void setInvetoryItemQuantity(int q, String name) {
+
+        int k=0;
+        int j = 0;
+        for (Item i : inventory) {
+            j++;
+
+            if (i.getName().equals(name)) {
+                j--;
+                k=i.getQuantity();
+                break;
+            }
+
+        }
+        k-=q;
+        inventory.get(j).setQuantity(k);
+
+    }
+    
     public static void removeInvetoryItem(String name) {
 
         for (int i = 0; i < inventory.size(); i++) {
