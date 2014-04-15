@@ -96,7 +96,8 @@ public class Customer extends JFrame implements ActionListener {
 //                    names+="Model: "+i.getName()+"\n";
 //                }
 //                JOptionPane.showMessageDialog(null ,"total");
-                ShoppingCart.setInvetoryItemQuantity();
+                Inventory.setInvetoryItemQuantity();
+                middle.repaint();
 
             }
         });

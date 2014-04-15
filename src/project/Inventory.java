@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static project.ShoppingCart.shoppingCart;
 
 public class Inventory implements java.io.Serializable {
 
@@ -38,22 +39,23 @@ public class Inventory implements java.io.Serializable {
 
     }
 
-    public static void setInvetoryItemQuantity(int q, String name) {
+    public static void setInvetoryItemQuantity() {
 
-        int k=0;
+        int k = 0;
         int j = 0;
         for (Item i : inventory) {
-            j++;
+            
+            for (Item l : shoppingCart) {
 
-            if (i.getName().equals(name)) {
-                j--;
-                k=i.getQuantity();
-                break;
+                if (i.getName().equals(l.getName())) {
+                    k=i.getQuantity()-l.getQuantity();
+                    inventory.get(j).setQuantity(k);
+                }
             }
-
+            j++;
         }
-        k-=q;
-        inventory.get(j).setQuantity(k);
+       
+
 
     }
     
