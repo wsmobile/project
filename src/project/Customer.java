@@ -86,8 +86,8 @@ public class Customer extends JFrame implements ActionListener {
         
      //Checkout button
         JButton Checkout = new JButton(" Checkout ");
-        Clear.setMaximumSize(new Dimension(120, 25));
-        Clear.addActionListener(new ActionListener() {
+        Checkout.setMaximumSize(new Dimension(120, 25));
+        Checkout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 //                String names=" ";
 //              //Checkout function here
@@ -96,10 +96,10 @@ public class Customer extends JFrame implements ActionListener {
 //                    names+="Model: "+i.getName()+"\n";
 //                }
 //                JOptionPane.showMessageDialog(null ,"total");
-                System.out.println("ok");
+                
                 Inventory.setInvetoryItemQuantity();
-                System.out.println("ok2");
-                con.repaint();
+               
+                middle.repaint();
 
             }
         });

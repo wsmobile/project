@@ -48,8 +48,10 @@ public class Inventory implements java.io.Serializable {
             for (Item l : shoppingCart) {
 
                 if (i.getName().equals(l.getName())) {
+                    System.out.println("ok");
                     k=i.getQuantity()-l.getQuantity();
                     inventory.get(j).setQuantity(k);
+                   
                 }
             }
             j++;
