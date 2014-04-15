@@ -52,21 +52,22 @@ public class Inventory implements java.io.Serializable {
     public static void setInvetoryItemQuantity() {
 
         int k = 0;
-        int j = 0;
+      //  int j = 0;
         for (Item i : inventory) {
 
             for (Item l : shoppingCart) {
 
                 if (i.getName().equals(l.getName())) {
-                    System.out.println("ok");
+                    //System.out.println("ok");
+              
                     k = i.getQuantity() - l.getQuantity();
-                    inventory.get(j).setQuantity(k);
-
+                    setInvetoryItem(i.getInvoicePrice(), i.getSellingPrice(), k, i.getName());
+                    
                 }
             }
-            j++;
+         //   j++;
         }
-
+        save();
     }
 
     public static void removeInvetoryItem(String name) {
@@ -212,7 +213,7 @@ public class Inventory implements java.io.Serializable {
             BufferedReader br = null;
             try {
                 br = new BufferedReader(new FileReader("profits.txt"));
-                revenue = Double.valueOf(br.readLine()); ///when fixed here fix on bottom as well
+                revenue = Double.valueOf(br.readLine()); 
                 costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
@@ -234,10 +235,10 @@ public class Inventory implements java.io.Serializable {
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter("profits.txt"));
 
-            out.write(revenue + "\n" + costs);
-//outStream.newLine();
-//outStream.write(output);
-//outStream.close();
+            out.write(Double.toString(revenue));
+            out.newLine();
+            out.write(Double.toString(costs));
+           
             out.close();
         } catch (IOException ee) {
             ee.printStackTrace();
@@ -245,4 +246,17 @@ public class Inventory implements java.io.Serializable {
 
     }
 
+    public static int findQuantity(String name, ArrayList<Item> list){
+        
+        int q = 0;
+        
+        for (Item i : list){
+            
+            if (i.getName().equals(name)){
+                q=i.getQuantity();
+            }
+        }
+        
+        return q;
+    }
 }

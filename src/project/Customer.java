@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import static project.FileChooserDemo.finameChosen;
 import static project.Inventory.inventory;
+import static project.Inventory.setInvetoryItem;
 import static project.ShoppingCart.shoppingCart;
 
 
@@ -60,9 +61,24 @@ public class Customer extends JFrame implements ActionListener {
             Add.setMaximumSize(new Dimension(120, 25));    
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {                                                      
-                    //add to cart function here                  
-                    ShoppingCart.addShoppingCart(currentName);                    
-                    displayShoppingCartItem();
+                    //add to cart function here  
+  
+
+               
+                                 
+                   if(Inventory.findQuantity(currentName,inventory) > 
+                           Inventory.findQuantity(currentName,shoppingCart)){
+                       //allow adding
+                       System.out.println("okk");
+                       ShoppingCart.addShoppingCart(currentName);  
+                       displayShoppingCartItem();
+                   }
+                   else{
+                       //display errormsg
+                       JOptionPane.showMessageDialog(null, "Sorry, we dont have that many items in stock!");
+                       displayShoppingCartItem();
+                   }
+            
                     
                 }
             });
@@ -89,17 +105,53 @@ public class Customer extends JFrame implements ActionListener {
         Checkout.setMaximumSize(new Dimension(120, 25));
         Checkout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                String names=" ";
-//              //Checkout function here
-//                for(Item i: shoppingCart)
-//                {
-//                    names+="Model: "+i.getName()+"\n";
-//                }
-//                JOptionPane.showMessageDialog(null ,"total");
+
+//                
+//                middle.repaint();
+                if (!shoppingCart.isEmpty()){
+                final JFrame confirmationpage = new JFrame("Order Summary");
                 
-                Inventory.setInvetoryItemQuantity();
+                int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
+                int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
+                confirmationpage.setSize(500, 500);
+                confirmationpage.setLocation(x - 300, y - 300);
+                confirmationpage.setVisible(true);
+                confirmationpage.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                JPanel thispanel = new JPanel(new GridLayout(0, 3));
+                thispanel.add(new JLabel("Model:"));
+                thispanel.add(new JLabel("Quantity:"));
+                thispanel.add(new JLabel("Price:"));
+                for (Item s : shoppingCart){
+                    
+                    thispanel.add(new JLabel(s.getName()));
+                    thispanel.add(new JLabel(""+s.getQuantity()));
+                    thispanel.add(new JLabel(""+s.getSellingPrice()*s.getQuantity()));
+                }
+                JButton confirm= new JButton("CONFIRM");
+                confirm.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    
+                    for (Item s : shoppingCart){
+                        Inventory.addtoProfits(s.getInvoicePrice(),s.getSellingPrice(),s.getQuantity());
+                        
+                    }
+                    Inventory.setInvetoryItemQuantity();
+                    JOptionPane.showMessageDialog(null, "Thank you for your purchase!");
+                    confirmationpage.dispose();
+                    Customer.super.dispose();
+                      
+
+                }
+            });
+                thispanel.add(confirm);
+                confirmationpage.add(thispanel);
+                thispanel.setBackground(Color.white);
+                thispanel.repaint();
                
-                middle.repaint();
+                }
+                else{
+                     JOptionPane.showMessageDialog(null, "Shopping cart is empty!");
+                }
 
             }
         });
