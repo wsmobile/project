@@ -74,6 +74,7 @@ public class ShoppingCart {
             }
 
         }
+        
         shoppingCart.get(j).setQuantity(q);
 
     }

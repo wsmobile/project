@@ -30,10 +30,10 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
     private static final JLabel shoppingCartItemName = new JLabel(" ");
-//    private static final JLabel  shoppingCartItemType = new JLabel(" B");
+    private static final JLabel  shoppingCartItemType = new JLabel(" B");
     private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
-//    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
-    private static final ArrayList<JLabel> cartItems = new ArrayList();
+    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
+    public static final JTextArea cartItems = new  JTextArea(" ");
     private static String currentName = "";
     
     public Customer() {
@@ -78,7 +78,7 @@ public class Customer extends JFrame implements ActionListener {
               //clear cart function here
               ShoppingCart.clearShoppingCart();
               displayShoppingCartItem();
-
+                
             }
         });
         
@@ -152,17 +152,13 @@ public class Customer extends JFrame implements ActionListener {
         JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
         
         buy.add(new JLabel("current itmes in cart:"));
-
-//        buy.add(shoppingCartItemType);
-        for(JLabel j : cartItems)
-        {
-            JLabel newLabel = new JLabel();
-            newLabel.setText(j.getText());
-            System.out.println(newLabel.getText());
-            buy.add(newLabel);
-        }
         
-//        buy.add(shoppingCartItemPrice);
+//        buy.add(shoppingCartItemType);
+//        buy.add(shoppingCartItemName);
+       
+//        buy.repaint();
+        buy.add(cartItems); 
+        buy.add(shoppingCartItemPrice);
 //        buy.add(shoppingCartItemQuantity);
         buy.add(label1);
         buy.add(Add);
@@ -219,6 +215,7 @@ public class Customer extends JFrame implements ActionListener {
 }
     
     private void displayShoppingCartItem(){
+        String k="" ;
         if (shoppingCart.isEmpty()) {
   
             shoppingCartItemPrice.setText(" ");
@@ -226,12 +223,13 @@ public class Customer extends JFrame implements ActionListener {
         } else {
             for (Item i : shoppingCart) {
                 
-                shoppingCartItemName.setText("Model: "+i.getName()+"  Qty: "+i.getQuantity());
-                cartItems.add(shoppingCartItemName);
+                k+="Model: "+i.getName()+"  Qty: "+i.getQuantity()+"\n";
+//                shoppingCartItemName.setText("Model: "+i.getName()+"  Qty: "+i.getQuantity());
+                cartItems.setText(k);
                 
             }
             shoppingCartItemPrice.setText("Total: " + ShoppingCart.ShoppingCartTotal());
-            cartItems.add(shoppingCartItemPrice);
+//            cartItems.add(shoppingCartItemPrice);
         }
         
         buy.repaint();
