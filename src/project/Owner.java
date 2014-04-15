@@ -183,21 +183,17 @@ class Owner extends JFrame {
             }
         });
 
-        //panel for seller info
-//      Profit = Revenues - Costs, 
-// Revenues = Sum of sell price for all sold items
-// Costs = Sum of invoice price for all items brought in the inventory (bought) 
-//        JPanel InfoPanel = new JPanel(new GridLayout(1, 14));
-//        SpacePanel.add(new JLabel("TOTALS------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
-//        SpacePanel.add(new JLabel("Costs:"));
-//        SpacePanel.add(new JLabel("0"));
-//        SpacePanel.add(new JLabel("Revenues:"));
-//        SpacePanel.add(new JLabel("0"));
-//        SpacePanel.add(new JLabel("Profit:"));
-//        SpacePanel.add(new JLabel("0"));
-//        
-//        add(InfoPanel);
-//        
+        //Button fo seller info
+        JButton info = new JButton("Display Sales Profits");
+        //info.setMaximumSize(new Dimension(2,2)); dont care
+        info.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+
+                    Inventory.displayProfits();
+
+                }
+            });    
+        add(info); 
         
         
         
