@@ -61,6 +61,10 @@ public class HomePage {
                         out.write(temppassword.getText() + "\n");
 
                         out.close();
+                        Customer pagec = new Customer();
+                                pagec.setLocation(x - 325, y - 300);
+                                pagec.setVisible(true);
+                                frame.dispose();
                     } catch (IOException ee) {
                         ee.printStackTrace();
                     }

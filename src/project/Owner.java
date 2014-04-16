@@ -4,13 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
 import static project.Inventory.inventory;
 
 class Owner extends JFrame {
@@ -80,6 +73,7 @@ class Owner extends JFrame {
             CurrentItemPanel.add(removeButton);
 
             updateButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
 
                     Inventory.setInvetoryItem((double) invoicepriceField.getValue(), (double) sellingpriceField.getValue(), (int) quantityField.getValue(), nameLabel.getText());
@@ -94,6 +88,7 @@ class Owner extends JFrame {
             });
 
             removeButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
 
                     Inventory.removeInvetoryItem(nameLabel.getText());
@@ -169,6 +164,8 @@ class Owner extends JFrame {
                 FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
                         Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
                         Integer.parseInt(quantityField2.getText()));
+                
+                        
                 
 
                 Owner.super.dispose();

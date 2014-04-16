@@ -106,6 +106,7 @@ public class Customer extends JFrame implements ActionListener {
                 confirmationpage.setLayout(new GridLayout(10,1));
          
                 JPanel P1 = new JPanel(new GridLayout(0, 3));
+            //   P1.setBackground(Color.gray);
 
                 P1.add(new JLabel("Model:"));
                 P1.add(new JLabel("Quantity:"));
@@ -118,6 +119,7 @@ public class Customer extends JFrame implements ActionListener {
                     Pn.add(new JLabel(s.getName()));
                     Pn.add(new JLabel(""+s.getQuantity()));
                     Pn.add(new JLabel(""+s.getSellingPrice()*s.getQuantity()));
+                    Pn.setBackground(Color.white);
                     confirmationpage.add(Pn);
                 }
                 
@@ -137,20 +139,37 @@ public class Customer extends JFrame implements ActionListener {
 
                 }
             });
-                  
+                
+                JButton cancel= new JButton("CANCEL");
+                cancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    
+                    confirmationpage.dispose();
+            
+
+                }
+            });
+                
+                
+                JPanel P8 = new JPanel(new GridLayout(0, 1)); 
+                P8.add(new JLabel("************************************************************************************************"));
+                confirmationpage.add(P8);
+                P8.setBackground(Color.white);
+                
+                
                 JPanel P9 = new JPanel(new GridLayout(0, 3));
                 P9.add(new JLabel("Grand Total: "));
                 P9.add(new JLabel(" "));
                 P9.add(new JLabel(Double.toString(ShoppingCart.ShoppingCartTotal())));   ///NEED TO PRINT TOTAL for the whole order HERE
+                P9.setBackground(Color.LIGHT_GRAY);
                 confirmationpage.add(P9);
                 
                 
                   JPanel P10 = new JPanel();
                   P10.add(confirm);
+                  P10.add(cancel);
                   confirmationpage.add(P10);
-    //              confirmationpage.setBackground(Color.white);
-   //               confirmationpage.repaint();
-                  
+                 
                
                 }
                 else{
