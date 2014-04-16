@@ -202,6 +202,8 @@ class Owner extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
                    //NEED TO IMPLEMENT A CLEAR FUNCTION AND CALL IT HERE
+                    Inventory.clearProfit();
+                    
 
                 }
             });    

@@ -258,4 +258,25 @@ public class Inventory implements java.io.Serializable {
         
         return q;
     }
+    
+    public static void clearProfit()
+    {
+         File f = new File("WSMobileUserData\\" + "profits.txt");
+        if (f.exists()) {//open and read revenue and costs
+
+            try {
+                BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"));
+
+                out.write(Double.toString(0));
+                out.newLine();
+                out.write(Double.toString(0));
+
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    
+    }
+    
 }
