@@ -30,16 +30,11 @@ class Owner extends JFrame {
         
   Inventory.load();
         
-
-        for (Item i : inventory) {
-
-            System.out.println(i.getName() + "\t" + i.getfilename());
-     
-        }
        
 
-        //displaying in window
+        //displaying in window 
         setLayout(new GridLayout(inventory.size() + 10, 1));
+       
 
         //panel for current items
         for (int i = 0; i < inventory.size(); i++) {
@@ -118,7 +113,7 @@ class Owner extends JFrame {
 
         //panel for dashing
         JPanel SpacePanel = new JPanel(new GridLayout(1, 1));
-        SpacePanel.add(new JLabel("To create new item fill the form below:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
+        SpacePanel.add(new JLabel("To create new item fill the form below:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         add(SpacePanel);
 
      
@@ -182,10 +177,15 @@ class Owner extends JFrame {
 
             }
         });
+        
+        
+        JPanel infoButtonsPanel = new JPanel();
+       // infoButtonsPanel.setLayout(new BoxLayout(infoButtonsPanel, BoxLayout.X_AXIS));
 
+        
         //Button fo seller info
         JButton info = new JButton("Display Sales Profits");
-        //info.setMaximumSize(new Dimension(2,2)); dont care
+       // info.setMaximumSize(new Dimension(2,2)); //dont care
         info.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
@@ -193,9 +193,21 @@ class Owner extends JFrame {
 
                 }
             });    
-        add(info); 
+        infoButtonsPanel.add(info); 
         
         
+        //Button for clearing profits
+        JButton clearinfo = new JButton("Clear Profit Record");
+        info.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+
+                   //NEED TO IMPLEMENT A CLEAR FUNCTION AND CALL IT HERE
+
+                }
+            });    
+        infoButtonsPanel.add(clearinfo); 
+        
+        add(infoButtonsPanel);
         
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Welcome");

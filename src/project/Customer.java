@@ -100,18 +100,27 @@ public class Customer extends JFrame implements ActionListener {
                 int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
                 confirmationpage.setSize(500, 500);
                 confirmationpage.setLocation(x - 300, y - 300);
+             //   confirmationpage.setBackground(Color.white);
                 confirmationpage.setVisible(true);
                 confirmationpage.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                JPanel thispanel = new JPanel(new GridLayout(0, 3));
-                thispanel.add(new JLabel("Model:"));
-                thispanel.add(new JLabel("Quantity:"));
-                thispanel.add(new JLabel("Price:"));
+                confirmationpage.setLayout(new GridLayout(10,1));
+         
+                JPanel P1 = new JPanel(new GridLayout(0, 3));
+
+                P1.add(new JLabel("Model:"));
+                P1.add(new JLabel("Quantity:"));
+                P1.add(new JLabel("Price:"));
+                confirmationpage.add(P1);
+                
                 for (Item s : shoppingCart){
                     
-                    thispanel.add(new JLabel(s.getName()));
-                    thispanel.add(new JLabel(""+s.getQuantity()));
-                    thispanel.add(new JLabel(""+s.getSellingPrice()*s.getQuantity()));
+                    JPanel Pn = new JPanel(new GridLayout(0, 3));
+                    Pn.add(new JLabel(s.getName()));
+                    Pn.add(new JLabel(""+s.getQuantity()));
+                    Pn.add(new JLabel(""+s.getSellingPrice()*s.getQuantity()));
+                    confirmationpage.add(Pn);
                 }
+                
                 JButton confirm= new JButton("CONFIRM");
                 confirm.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -128,10 +137,20 @@ public class Customer extends JFrame implements ActionListener {
 
                 }
             });
-                thispanel.add(confirm);
-                confirmationpage.add(thispanel);
-                thispanel.setBackground(Color.white);
-                thispanel.repaint();
+                  
+                JPanel P9 = new JPanel(new GridLayout(0, 3));
+                P9.add(new JLabel("Grand Total: "));
+                P9.add(new JLabel(" "));
+                P9.add(new JLabel("xxxxx"));   ///NEED TO PRINT TOTAL for the whole order HERE
+                confirmationpage.add(P9);
+                
+                
+                  JPanel P10 = new JPanel();
+                  P10.add(confirm);
+                  confirmationpage.add(P10);
+    //              confirmationpage.setBackground(Color.white);
+   //               confirmationpage.repaint();
+                  
                
                 }
                 else{
