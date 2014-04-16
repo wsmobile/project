@@ -19,8 +19,8 @@ public class FileChooserDemo extends JPanel
     JFileChooser fc;
     static private JFrame frame1 = new JFrame("Choosee a picture");
     
-    
-        final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
+ 
+    final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
     final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
     
     
@@ -91,7 +91,7 @@ public class FileChooserDemo extends JPanel
             
             Image myimage = null ;
                 try {
-                    myimage = ImageIO.read(new File(finameChosen));
+                    myimage = ImageIO.read(new File("WSMobilePictures\\"+finameChosen));
                 } catch (IOException ioe) {
                 }
                 
@@ -118,9 +118,6 @@ public class FileChooserDemo extends JPanel
             double otherselling, int otherquantity) {
         //Create and set up the window.
          frame1.setVisible(true);
-        //frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-           
            name= othername;
            ID = otherID;
            type = othertype;

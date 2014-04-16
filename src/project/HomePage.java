@@ -27,9 +27,8 @@ public class HomePage {
 
     public static void main(String[] args) {
 
-        final JFrame frame = new JFrame("HomePage");
-        //frame.setLocationRelativeTo(null);
-
+        final JFrame frame = new JFrame("WSMobile");
+       
         final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
         final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
         frame.setLocation(x - 150, y - 150);
@@ -52,12 +51,12 @@ public class HomePage {
         registerButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                File f = new File(tempusername.getText() + ".txt");
+                File f = new File("WSMobileUserData\\" + tempusername.getText() + ".txt");
                 if (f.exists()) {
                     JOptionPane.showMessageDialog(frame, "Username exists!");
                 } else {
                     try {
-                        BufferedWriter out = new BufferedWriter(new FileWriter(tempusername.getText() + ".txt"));
+                        BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + tempusername.getText() + ".txt"));
 
                         out.write(temppassword.getText() + "\n");
 
@@ -73,7 +72,7 @@ public class HomePage {
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                File f = new File(tempusername.getText() + ".txt");
+                File f = new File("WSMobileUserData\\" + tempusername.getText() + ".txt");
 
                 if (tempusername.getText().length() == 0) {
                     JOptionPane.showMessageDialog(frame, "Username was empty!\nPLease enter username.");
@@ -83,38 +82,28 @@ public class HomePage {
                     JOptionPane.showMessageDialog(frame, "Username does not exists!\nPlease register.");
                 } else if ((tempusername.getText().equals("admin")) && (temppassword.getText().equals("pass"))) {
                     //open in seller mode
-                    
                     Owner page = new Owner();
                     page.setLocation(x - 600, y - 300);
                     page.setVisible(true);
-                    //   frame.setVisible(false);
                     frame.dispose();
-
                 } else {
                     BufferedReader br = null;
-
                     try {
                         String sCurrentLine;
                         String pass = temppassword.getText();
-
-                        br = new BufferedReader(new FileReader(tempusername.getText() + ".txt"));
+                        br = new BufferedReader(new FileReader("WSMobileUserData\\" + tempusername.getText() + ".txt"));
 
                         while ((sCurrentLine = br.readLine()) != null) {
                             if (sCurrentLine.equals(pass)) {
                                 //open in buyermode
-                                                                
                                 Customer pagec = new Customer();
                                 pagec.setLocation(x - 325, y - 300);
                                 pagec.setVisible(true);
-                                
                                 frame.dispose();
-                              
-                                                               
-                                
+                  
                             } else {
                                 JOptionPane.showMessageDialog(frame, "Password does not match!\nPlease try again!");
                             }
-
                         }
                     } catch (IOException eee) {
                         eee.printStackTrace();
@@ -125,13 +114,9 @@ public class HomePage {
         });
 
         frame.add(panel, BorderLayout.CENTER);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //frame.setSize(800, 700);
         frame.pack();
         frame.setVisible(true);
-
     }
 
 }

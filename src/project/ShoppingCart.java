@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package project;
 
@@ -11,7 +7,7 @@ import static project.Inventory.inventory;
 
 /**
  *
- * @author weijie
+ * @author wsmobile
  */
 public class ShoppingCart {
     
@@ -54,7 +50,7 @@ public class ShoppingCart {
        total=0;
         for(Item i: shoppingCart)
         {
-//             System.out.println(i.getSellingPrice());
+//         
             total+=i.getSellingPrice()*i.getQuantity();
         }
         return total;
@@ -74,7 +70,7 @@ public class ShoppingCart {
             }
 
         }
-        
+       
         shoppingCart.get(j).setQuantity(q);
 
     }

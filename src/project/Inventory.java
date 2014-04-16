@@ -27,10 +27,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static project.ShoppingCart.shoppingCart;
 
+
+
+
 public class Inventory implements java.io.Serializable {
 
     public static ArrayList<Item> inventory = new ArrayList<>();
 
+    
+    
     public static void setInvetoryItem(double inv, double s, int q, String name) {
 
         int j = 0;
@@ -52,20 +57,17 @@ public class Inventory implements java.io.Serializable {
     public static void setInvetoryItemQuantity() {
 
         int k = 0;
-      //  int j = 0;
-        for (Item i : inventory) {
+         for (Item i : inventory) {
 
             for (Item l : shoppingCart) {
 
                 if (i.getName().equals(l.getName())) {
-                    //System.out.println("ok");
-              
+                 
                     k = i.getQuantity() - l.getQuantity();
                     setInvetoryItem(i.getInvoicePrice(), i.getSellingPrice(), k, i.getName());
                     
                 }
             }
-         //   j++;
         }
         save();
     }
@@ -79,16 +81,13 @@ public class Inventory implements java.io.Serializable {
                 inventory.remove(i);
 
             }
-
         }
     }
 
     public static void createItem(Item i) {
 
         if (inventory.equals(i)) {
-
             JOptionPane.showMessageDialog(new JFrame(), "name exists!");
-
         } else {
             inventory.add(i);
         }
@@ -98,10 +97,10 @@ public class Inventory implements java.io.Serializable {
     //testing create
     public static void createTestItemz() throws IOException {
 
-        Image myimage = ImageIO.read(new File("iphone4.jpg"));
+        Image myimage = ImageIO.read(new File("WSMobileUserData\\" + "iphone4.jpg"));
         ImageIcon icon = new ImageIcon(myimage);
 
-        Image myimage1 = ImageIO.read(new File("iphone5.jpg"));
+        Image myimage1 = ImageIO.read(new File("WSMobileUserData\\" + "iphone5.jpg"));
         ImageIcon icon1 = new ImageIcon(myimage1);
 
         Item iphone4s = new Item(icon, "iPhone4", "ID123", "apple", 100.00, 200.00, 1);
@@ -118,7 +117,7 @@ public class Inventory implements java.io.Serializable {
     public static void save() {
 
         try {
-            FileOutputStream fos = new FileOutputStream("myfile");
+            FileOutputStream fos = new FileOutputStream("WSMobileUserData\\" + "myfile");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(inventory);
             oos.close();
@@ -131,7 +130,7 @@ public class Inventory implements java.io.Serializable {
 
     public static void load() {
         try {
-            FileInputStream fis = new FileInputStream("myfile");
+            FileInputStream fis = new FileInputStream("WSMobileUserData\\" + "myfile");
             ObjectInputStream ois = new ObjectInputStream(fis);
             inventory = (ArrayList) ois.readObject();
             ois.close();
@@ -151,15 +150,15 @@ public class Inventory implements java.io.Serializable {
 // Profit = Revenues - Costs, 
 // Revenues = Sum of sell price for all sold items
 // Costs = Sum of invoice price for all items brought in the inventory (bought)
-        //I did cost  = sum of invoice price for all items sold, otherwise it will be negative for a while
-        //makes no sence to calculate
+//I did cost  = sum of invoice price for all items sold, otherwise it will be negative for a while
+//makes no sence to calculate
         double revenue = 0.0;
         double costs = 0.0;
-        File f = new File("profits.txt");
+        File f = new File("WSMobileUserData\\" + "profits.txt");
         if (f.exists()) {//open and read revenue and costs
             BufferedReader br = null;
             try {
-                br = new BufferedReader(new FileReader("profits.txt"));
+                br = new BufferedReader(new FileReader("WSMobileUserData\\" + "profits.txt"));
                 revenue = Double.valueOf(br.readLine());
                 costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
@@ -208,11 +207,11 @@ public class Inventory implements java.io.Serializable {
     public static void addtoProfits(double inv, double sel, int quant) {
         double revenue = 0.0;
         double costs = 0.0;
-        File f = new File("profits.txt");
+        File f = new File("WSMobileUserData\\" + "profits.txt");
         if (f.exists()) {//open and read revenue and costs
             BufferedReader br = null;
             try {
-                br = new BufferedReader(new FileReader("profits.txt"));
+                br = new BufferedReader(new FileReader("WSMobileUserData\\" + "profits.txt"));
                 revenue = Double.valueOf(br.readLine()); 
                 costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
@@ -233,7 +232,7 @@ public class Inventory implements java.io.Serializable {
 
         //create and initialize profit file
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("profits.txt"));
+            BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"));
 
             out.write(Double.toString(revenue));
             out.newLine();

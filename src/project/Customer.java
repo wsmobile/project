@@ -30,10 +30,6 @@ public class Customer extends JFrame implements ActionListener {
     private static final JLabel currentname = new JLabel(" ");
     private static final JLabel  currenttype = new JLabel(" ");
     private static final JLabel  curentprice = new JLabel(" ");
-//    private static final JLabel shoppingCartItemName = new JLabel(" ");
-//    private static final JLabel  shoppingCartItemType = new JLabel(" B");
-//    private static final JLabel  shoppingCartItemPrice = new JLabel(" ");  
-//    private static final JLabel  shoppingCartItemQuantity = new JLabel("D ");
     public static final JLabel cartItems = new  JLabel(" ");
     
     private static String currentName = "";
@@ -53,23 +49,16 @@ public class Customer extends JFrame implements ActionListener {
         con.setBackground(Color.white);
 
 
-        
-    
-   
             //Add button
             JButton Add = new JButton(" Add to cart ");     
             Add.setMaximumSize(new Dimension(120, 25));    
             Add.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {                                                      
                     //add to cart function here  
-  
-
-               
-                                 
+                               
                    if(Inventory.findQuantity(currentName,inventory) > 
                            Inventory.findQuantity(currentName,shoppingCart)){
                        //allow adding
-                       System.out.println("okk");
                        ShoppingCart.addShoppingCart(currentName);  
                        displayShoppingCartItem();
                    }
@@ -78,8 +67,7 @@ public class Customer extends JFrame implements ActionListener {
                        JOptionPane.showMessageDialog(null, "Sorry, we dont have that many items in stock!");
                        displayShoppingCartItem();
                    }
-            
-                    
+ 
                 }
             });
            
@@ -92,13 +80,12 @@ public class Customer extends JFrame implements ActionListener {
         Clear.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-              //clear cart function here
-              ShoppingCart.clearShoppingCart();
-              displayShoppingCartItem();
-                
+                //clear cart function here
+                ShoppingCart.clearShoppingCart();
+                displayShoppingCartItem();
             }
         });
-        
+
         
      //Checkout button
         JButton Checkout = new JButton(" Checkout ");
@@ -106,8 +93,6 @@ public class Customer extends JFrame implements ActionListener {
         Checkout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-//                
-//                middle.repaint();
                 if (!shoppingCart.isEmpty()){
                 final JFrame confirmationpage = new JFrame("Order Summary");
                 
@@ -190,8 +175,6 @@ public class Customer extends JFrame implements ActionListener {
         middle.add(currentname);
         middle.add(curentprice);
         middle.add(currentquantity);
-        //currentquantity.setVisible(false);
-      //  currentquantity.setMaximumSize(new Dimension(50,50));
         con.add(middle);
    
         
@@ -201,24 +184,13 @@ public class Customer extends JFrame implements ActionListener {
         buy.setBorder(BorderFactory.createTitledBorder("Selected items"));
         con.add(buy);
 
-       // buy.add(Box.createRigidArea(new Dimension(0, 50)));
-
-        ImageIcon image = new ImageIcon("1.jpg");
-
+        ImageIcon image = new ImageIcon("WSMobilePictures\\1.jpg");
         JLabel label1 = new JLabel(" ", image, JLabel.CENTER);
         
         buy.add(new JLabel("current itmes in cart:"));
-        
-//        buy.add(shoppingCartItemType);
-//        buy.add(shoppingCartItemName);
-       
-//        buy.repaint();
         buy.add(cartItems); 
-//        buy.add(shoppingCartItemPrice);
-//        buy.add(shoppingCartItemQuantity);
         buy.add(label1);
         buy.add(Add);
-        //buy.add(Add);
         buy.add(Clear);
         buy.add(new JLabel("*********************************"));
         buy.add(Checkout);
@@ -228,18 +200,14 @@ public class Customer extends JFrame implements ActionListener {
     }
     
 
-
-
     @Override
-
     public void actionPerformed(ActionEvent e) {
-
    // TODO Auto-generated method stub
     }
     
+    
     private void displayItem(String n){
-        
-        
+         
         for (Item i : inventory) {
           
             if (i.getName().equals(n)) {
@@ -247,7 +215,7 @@ public class Customer extends JFrame implements ActionListener {
                                
                 Image myimage = null ;
                 try {
-                    myimage = ImageIO.read(new File(i.getfilename()));
+                    myimage = ImageIO.read(new File("WSMobilePictures\\" + i.getfilename()));
                 } catch (IOException ioe) {
                 }
 
@@ -256,14 +224,13 @@ public class Customer extends JFrame implements ActionListener {
                 
                 currentpic.setIcon(icon);
                 currentpic.repaint();
-                
                 currenttype.setText("Type: " + i.getType());
                 currentname.setText("Model: " + i.getName());
                 currentName=i.getName();
                 curentprice.setText("Price: " + String.valueOf(i.getSellingPrice()));                         
                 currentquantity.setText("Quantity: " + i.getQuantity());
                 middle.repaint();           
-                
+            
                 break;
             }
     }
@@ -280,12 +247,8 @@ public class Customer extends JFrame implements ActionListener {
             for (Item i : shoppingCart) {
                 
                 k+="Model: "+i.getName()+"  Qty: "+i.getQuantity()+"<br>";
-//                shoppingCartItemName.setText("Model: "+i.getName()+"  Qty: "+i.getQuantity());
-                                
-            }
+         }
             k+="<br>Total: " + ShoppingCart.ShoppingCartTotal()+"</html>";
-//            shoppingCartItemPrice.setText("Total: " + ShoppingCart.ShoppingCartTotal());
-//            cartItems.add(shoppingCartItemPrice);
         }
         cartItems.setText(k);
         buy.repaint();
