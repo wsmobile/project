@@ -141,7 +141,7 @@ public class Customer extends JFrame implements ActionListener {
                 JPanel P9 = new JPanel(new GridLayout(0, 3));
                 P9.add(new JLabel("Grand Total: "));
                 P9.add(new JLabel(" "));
-                P9.add(new JLabel("xxxxx"));   ///NEED TO PRINT TOTAL for the whole order HERE
+                P9.add(new JLabel(Double.toString(ShoppingCart.ShoppingCartTotal())));   ///NEED TO PRINT TOTAL for the whole order HERE
                 confirmationpage.add(P9);
                 
                 
