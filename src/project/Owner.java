@@ -198,12 +198,12 @@ class Owner extends JFrame {
         
         //Button for clearing profits
         JButton clearinfo = new JButton("Clear Profit Record");
-        info.addActionListener(new ActionListener() {
+        clearinfo.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
                    //NEED TO IMPLEMENT A CLEAR FUNCTION AND CALL IT HERE
                     Inventory.clearProfit();
-                    
+                    Inventory.displayProfits();
 
                 }
             });    
