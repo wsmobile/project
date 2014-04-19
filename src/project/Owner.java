@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import static project.FileChooserDemo.finameChosen;
+//import static project.FileChooserDemo.finameChosen;
 import static project.Inventory.inventory;
 
 class Owner extends JFrame {
@@ -168,7 +168,7 @@ class Owner extends JFrame {
 //                            Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
 //                            Integer.parseInt(quantityField2.getText()));
                     JFileChooser fc = new JFileChooser();
-
+                    String finameChosen = null;
                     fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
                     int returnVal = fc.showOpenDialog(null);
 

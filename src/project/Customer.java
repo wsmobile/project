@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import static project.FileChooserDemo.finameChosen;
+//import static project.FileChooserDemo.finameChosen;
 import static project.Inventory.inventory;
 import static project.Inventory.setInvetoryItem;
 import static project.ShoppingCart.shoppingCart;
