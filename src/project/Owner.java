@@ -7,17 +7,30 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-//import static project.FileChooserDemo.finameChosen;
 import static project.Inventory.inventory;
 
+/**
+ * This is a owner class that serve as a view
+ * It displays all items in inventory and allows the owner
+ * to add, remove or update items in the inventory.
+ * @author sraychev
+ */
 class Owner extends JFrame {
 
+    //get middle of the screen for positioning
     final int x = (Toolkit.getDefaultToolkit().getScreenSize().width / 2);
     final int y = (Toolkit.getDefaultToolkit().getScreenSize().height / 2);
 
+    /**
+     * This is the default constructor.
+     * preconditions: user has been identified and logged in as owner
+     * postconditions: none
+     */
     Owner() {
 
-         //use to initialize inventory
+//use to initialize inventory
+//This will create an initial inventory
+//Once inventory created it can be manipulated in owner mode
 //   try { 
 //  Inventory.createTestItemz(); } catch (IOException ioe) {
 //            ioe.printStackTrace();
@@ -25,11 +38,11 @@ class Owner extends JFrame {
 //  Inventory.save();
 //  
         
-  Inventory.load();
+  
+        //load current inventory
+        Inventory.load();
         
-       
-
-        //displaying in window 
+        //setting the frame layout
         setLayout(new GridLayout(inventory.size() + 10, 1));
        
 
@@ -37,15 +50,9 @@ class Owner extends JFrame {
         for (int i = 0; i < inventory.size(); i++) {
 
             final JPanel CurrentItemPanel = new JPanel(new GridLayout(1, 15));
-
             final JLabel nameLabel = new JLabel(inventory.get(i).getName());
-
- 
             JLabel imgLabel = new JLabel();
             imgLabel.setIcon(inventory.get(i).getpicture());
-            
-
-            
             final JFormattedTextField quantityField = new JFormattedTextField();
             quantityField.setValue(inventory.get(i).getQuantity());
 
@@ -55,10 +62,12 @@ class Owner extends JFrame {
             final JFormattedTextField sellingpriceField = new JFormattedTextField();
             sellingpriceField.setValue(inventory.get(i).getSellingPrice());
 
+            /**
+             * Create buttons and labels for EACH item from inventory
+             */
             JButton updateButton = new JButton("Update");
             JButton removeButton = new JButton("Remove");
 
-            //inventory.get(i).setInvoicePrice((double) invoicepriceField.getValue());
             CurrentItemPanel.add(imgLabel);
             CurrentItemPanel.add(new JLabel("Name:"));
             CurrentItemPanel.add(new JLabel(inventory.get(i).getName()));
@@ -76,6 +85,10 @@ class Owner extends JFrame {
             CurrentItemPanel.add(updateButton);
             CurrentItemPanel.add(removeButton);
 
+            /**
+             * Create an action listener for each update button to corresponding item
+             * It saves any changes to item's price and quantity and calls itself to redisplay
+             */
             updateButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -91,6 +104,10 @@ class Owner extends JFrame {
                 }
             });
 
+             /**
+             * Create an action listener for each remove button to corresponding item
+             * It removes that item from inventory and calls itself to redisplay
+             */
             removeButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -110,7 +127,10 @@ class Owner extends JFrame {
 
         }
 
-        //panel for dashing
+        /**
+         * Create a panel for spacing
+         * and add it to the frame
+         */
         JPanel SpacePanel = new JPanel(new GridLayout(1, 1));
         SpacePanel.add(new JLabel("To create new item fill the form below:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"));
         add(SpacePanel);
@@ -118,25 +138,20 @@ class Owner extends JFrame {
      
 
 
-
-
-        //panel for creating new item
+        /**
+         * Create a panel for adding new item
+         * and add it to the frame.
+         */
         JPanel CreateNewItemPanel = new JPanel(new GridLayout(1, 14));
         JButton CreateButton = new JButton("Create");
 
         final JFormattedTextField nameField = new JFormattedTextField();
-
         final JFormattedTextField IDField = new JFormattedTextField();
-
         final JFormattedTextField typeField = new JFormattedTextField();
-
         final JFormattedTextField sellingpriceField2 = new JFormattedTextField();
-
         final JFormattedTextField invoicepriceField2 = new JFormattedTextField();
-
         final JFormattedTextField quantityField2 = new JFormattedTextField();
 
-        //CreateNewItemPanel.add(new JLabel("i.picture)"));
         CreateNewItemPanel.add(new JLabel("Name:"));
         CreateNewItemPanel.add(nameField);
         CreateNewItemPanel.add(new JLabel("Type:"));
@@ -153,20 +168,23 @@ class Owner extends JFrame {
         CreateNewItemPanel.setBackground(Color.gray);
 
         add(CreateNewItemPanel);
-        //add(horinScroll);
+        
+        /**
+         * Creates an action listener for the create button
+         * preconditions: all field must be filled
+         * postconditions: a new item was added to inventory
+         */
         CreateButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-            //call filechooser
-                
+                 
                 if (nameField.getText().isEmpty() || IDField.getText().isEmpty() || typeField.getText().isEmpty()
                         || invoicepriceField2.getText().isEmpty() || sellingpriceField2.getText().isEmpty()
                         || quantityField2.getText().isEmpty()) {
 
                     JOptionPane.showMessageDialog(null, "Please fill out all fields!");
                 } else {
-//                    FileChooserDemo.createAndShowGUI(nameField.getText(), IDField.getText(), typeField.getText(),
-//                            Double.parseDouble(invoicepriceField2.getText()), Double.parseDouble(sellingpriceField2.getText()),
-//                            Integer.parseInt(quantityField2.getText()));
+
                     JFileChooser fc = new JFileChooser();
                     String finameChosen = null;
                     fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -175,13 +193,12 @@ class Owner extends JFrame {
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         File file = fc.getSelectedFile();
                         finameChosen = file.getName();
-                //This is where a real application would open the file.
 
                     } else {
 
                     }
 
-        //Handle save button action.
+             //Handle  action.
                     Image myimage = null;
                     try {
                         myimage = ImageIO.read(new File("WSMobilePictures\\" + finameChosen));
@@ -208,13 +225,16 @@ class Owner extends JFrame {
             }
         });
 
+        
+        /**
+         * Create panel for owner info 
+         * and add it to the frame
+         */
         JPanel infoButtonsPanel = new JPanel();
-       // infoButtonsPanel.setLayout(new BoxLayout(infoButtonsPanel, BoxLayout.X_AXIS));
-
-        //Button fo seller info
+        //Button for displaying profits
         JButton info = new JButton("Display Sales Profits");
-        // info.setMaximumSize(new Dimension(2,2)); //dont care
         info.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
 
                 Inventory.displayProfits();
@@ -226,9 +246,9 @@ class Owner extends JFrame {
         //Button for clearing profits
         JButton clearinfo = new JButton("Clear Profit Record");
         clearinfo.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
 
-                //NEED TO IMPLEMENT A CLEAR FUNCTION AND CALL IT HERE
                 Inventory.clearProfit();
                 Inventory.displayProfits();
 

@@ -17,9 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,13 +27,29 @@ import static project.ShoppingCart.shoppingCart;
 
 
 
-
+/**
+ * this is a inventory class that serves as a controller
+ * it stores a list of items and provides functions to 
+ * modify the inventory
+ * 
+ * @author sraychev
+ */
 public class Inventory implements java.io.Serializable {
 
+    //holds a list of all items in inventory
     public static ArrayList<Item> inventory = new ArrayList<>();
 
     
-    
+    /**
+     * mutator, sets the invoice price, selling price and quantity for an item in inventory
+     * @param inv represents the new inventory price that is being passed
+     * @param s represents the new selling price that is being passed
+     * @param q represents the new quantity that is being passed
+     * @param name the name of the item
+     * preconditions: the item with this name exist in inventory
+     * postconditions: the item was updated with a new selling price, invoice price and quantity
+     *                  and inventory is saved
+     */
     public static void setInvetoryItem(double inv, double s, int q, String name) {
 
         int j = 0;
@@ -54,9 +68,18 @@ public class Inventory implements java.io.Serializable {
 
     }
 
+    /**
+     * mutator, sets the quantity of an item in inventory
+     * It takes no parameters, it is called when a customer makes a purchase.
+     * It takes the number of items purchased from the shopping cart and subtracts it
+     * from the inventory, thus updating and saving the inventory every time a customer 
+     * makes a purchase.
+     * preconditions: the item exist in inventory and shopping cart
+     * postconditions: the quantity of all items from the shopping cart was subtracted from inventory
+     */
     public static void setInvetoryItemQuantity() {
 
-        int k = 0;
+        int k ;
          for (Item i : inventory) {
 
             for (Item l : shoppingCart) {
@@ -72,6 +95,12 @@ public class Inventory implements java.io.Serializable {
         save();
     }
 
+    /**
+     * mutator, it removes an item from the inventory completely 
+     * @param name is the name of the item that is being removed
+     * preconditions: the item exists in inventory
+     * postconditions: the item was deleted from inventory
+     */
     public static void removeInvetoryItem(String name) {
 
         for (int i = 0; i < inventory.size(); i++) {
@@ -84,6 +113,12 @@ public class Inventory implements java.io.Serializable {
         }
     }
 
+    /**
+     * mutator, it adds a new item to the inventory
+     * @param i is the item that is being added
+     * preconditions: user has logged in owner mode and clicked on the create item button
+     * postconditions: item was added to the inventory
+     */
     public static void createItem(Item i) {
 
         if (inventory.equals(i)) {
@@ -94,7 +129,12 @@ public class Inventory implements java.io.Serializable {
 
     }
 
-    //testing create
+    /**
+     * mutator, this function is for testing purposes
+     * It invokes different constructors of item and initializes an inventory
+     * if the application is to be run for a first time
+     * @throws IOException 
+     */
     public static void createTestItemz() throws IOException {
 
         Image myimage = ImageIO.read(new File("WSMobileUserData\\" + "iphone4.jpg"));
@@ -114,37 +154,43 @@ public class Inventory implements java.io.Serializable {
 
     }
 
+    /**
+     * mutator, it saves any changes of the items in inventory to a file using serialization
+     * It takes no parameters.
+     * Needs to be called every time when a change is made.
+     */
     public static void save() {
 
         try {
-            FileOutputStream fos = new FileOutputStream("WSMobileUserData\\" + "myfile");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(inventory);
-            oos.close();
-            fos.close();
+            try (FileOutputStream fos = new FileOutputStream("WSMobileUserData\\" + "myfile"); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+                oos.writeObject(inventory);
+            }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
         }
 
     }
 
+    /**
+     * accessor, it reads all items from a file and adds them in to a array list
+     * It needs to be called every time when a view is called
+     */
     public static void load() {
         try {
-            FileInputStream fis = new FileInputStream("WSMobileUserData\\" + "myfile");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            inventory = (ArrayList) ois.readObject();
-            ois.close();
-            fis.close();
+            try (FileInputStream fis = new FileInputStream("WSMobileUserData\\" + "myfile"); ObjectInputStream ois = new ObjectInputStream(fis)) {
+                inventory = (ArrayList) ois.readObject();
+            }
         } catch (IOException ioe) {
-            ioe.printStackTrace();
-            return;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            c.printStackTrace();
-            return;
         }
     }
 
+    /**
+     * accessor, it displays the sales profits up to this point in a JFrame
+     * It reads a file that contains the revenue and costs up to this point
+     * and calculates profit.
+     * 
+     */
     public static void displayProfits() {
 
 // Profit = Revenues - Costs, 
@@ -155,21 +201,20 @@ public class Inventory implements java.io.Serializable {
         double revenue = 0.0;
         double costs = 0.0;
         File f = new File("WSMobileUserData\\" + "profits.txt");
-        if (f.exists()) {//open and read revenue and costs
+        if (f.exists()) {
+            //open and read revenue and costs
             BufferedReader br = null;
             try {
                 br = new BufferedReader(new FileReader("WSMobileUserData\\" + "profits.txt"));
                 revenue = Double.valueOf(br.readLine());
                 costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
-                e.printStackTrace();
             } finally {
                 try {
                     if (br != null) {
                         br.close();
                     }
                 } catch (IOException ex) {
-                    ex.printStackTrace();
                 }
             }
         }
@@ -178,6 +223,7 @@ public class Inventory implements java.io.Serializable {
         String sRevenue = Double.toString(revenue);
         String sCosts = Double.toString(costs);
 
+        //create a frame and dsplay totals
         final JFrame totals = new JFrame();
         totals.setVisible(true);
         totals.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -190,6 +236,7 @@ public class Inventory implements java.io.Serializable {
         JButton ok = new JButton("OK");
         totals.add(ok, BorderLayout.SOUTH);
         ok.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
 
                 totals.dispose();
@@ -204,25 +251,33 @@ public class Inventory implements java.io.Serializable {
 
     }
 
+    /**
+     * mutator, it ads to profits every time a sale was made.
+     * @param inv is the invoice price of the item that was sold
+     * @param sel is the selling price of the item that was sold
+     * @param quant is the number of items that were sold
+     * preconditions: none
+     * postconditions: the values of revenue and costs were written to a file
+     */
     public static void addtoProfits(double inv, double sel, int quant) {
         double revenue = 0.0;
         double costs = 0.0;
+        
         File f = new File("WSMobileUserData\\" + "profits.txt");
-        if (f.exists()) {//open and read revenue and costs
+        if (f.exists()) {
+            //open and read revenue and costs
             BufferedReader br = null;
             try {
                 br = new BufferedReader(new FileReader("WSMobileUserData\\" + "profits.txt"));
                 revenue = Double.valueOf(br.readLine()); 
                 costs = Double.valueOf(br.readLine());
             } catch (IOException e) {
-                e.printStackTrace();
             } finally {
                 try {
                     if (br != null) {
                         br.close();
                     }
                 } catch (IOException ex) {
-                    ex.printStackTrace();
                 }
             }
         }
@@ -230,21 +285,24 @@ public class Inventory implements java.io.Serializable {
         revenue = revenue + (sel * quant);
         costs = costs + (inv * quant);
 
-        //create and initialize profit file
+        //create and initialize profit file if one does not exist
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"));
-
-            out.write(Double.toString(revenue));
-            out.newLine();
-            out.write(Double.toString(costs));
-           
-            out.close();
+            try (BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"))) {
+                out.write(Double.toString(revenue));
+                out.newLine();
+                out.write(Double.toString(costs));
+            }
         } catch (IOException ee) {
-            ee.printStackTrace();
         }
 
     }
 
+    /**
+     * accessor, it returns the quantity of an item from a list of items
+     * @param name is the name of the item that is being inquired
+     * @param list is a list of items to be searched
+     * @return the quantity of an item
+     */
     public static int findQuantity(String name, ArrayList<Item> list){
         
         int q = 0;
@@ -259,21 +317,21 @@ public class Inventory implements java.io.Serializable {
         return q;
     }
     
+    /**
+     * mutator, resets the profits to 0
+     */
     public static void clearProfit()
     {
          File f = new File("WSMobileUserData\\" + "profits.txt");
         if (f.exists()) {//open and read revenue and costs
 
             try {
-                BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"));
-
-                out.write(Double.toString(0));
-                out.newLine();
-                out.write(Double.toString(0));
-
-                out.close();
+                try (BufferedWriter out = new BufferedWriter(new FileWriter("WSMobileUserData\\" + "profits.txt"))) {
+                    out.write(Double.toString(0));
+                    out.newLine();
+                    out.write(Double.toString(0));
+                }
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     

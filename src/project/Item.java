@@ -12,7 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- *
+ ***************************
  * @author wsmobile
  */
 public class Item implements java.io.Serializable{
