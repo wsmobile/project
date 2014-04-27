@@ -219,6 +219,7 @@ public class Inventory implements java.io.Serializable {
             }
         }
         double profit = revenue - costs;
+        profit = Math.round(profit * 100.0) / 100.0; //rpunds to 2 deciaml places after "."
         String sProfit = Double.toString(profit);
         String sRevenue = Double.toString(revenue);
         String sCosts = Double.toString(costs);
