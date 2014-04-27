@@ -21,8 +21,8 @@ public class ShoppingCart {
     /**
      * add new item to shoppingCart
      * @param n the name of the item
-     * @preconditions: the item with this name exist in inventory
-     * @postconditions: the item with full information will add to shoppingCart list
+     * preconditions: the item with this name exist in inventory
+     * postconditions: the item with full information will add to shoppingCart list
      */
     public static void addShoppingCart(String n) {
         int k=0;
@@ -50,8 +50,8 @@ public class ShoppingCart {
     
     /**
      * clear all items inside the shoppingCart
-     * @preconditions: none
-     * @postconditions: shoppingCart will be empty
+     * preconditions: none
+     * postconditions: shoppingCart will be empty
      */
     public static void clearShoppingCart()
     {
@@ -62,9 +62,9 @@ public class ShoppingCart {
     
     /**
      * calculate the total price of the all items
-     * @preconditions: none
-     * @postconditions: total update
-     * @return the total of all items' selling price
+     * preconditions: none
+     * postconditions: total update
+     * @return the total of all items selling price
      */
     public static double ShoppingCartTotal()
     {
@@ -80,8 +80,8 @@ public class ShoppingCart {
     /**
      * calculate the total price of the all items
      * @param n the name of the item
-     * @preconditions: the item with this name exist in shoppingCart list
-     * @postconditions: update the shoppingCart item quantity
+     * preconditions: the item with this name exist in shoppingCart list
+     * postconditions: update the shoppingCart item quantity
      */
     public static void setShoppingCartItem( String n) {
 

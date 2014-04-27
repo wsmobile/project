@@ -31,8 +31,8 @@ public class Item implements java.io.Serializable{
     
     /**
        *Constructor. allow controller to create a new item without any parameter
-      * @precondition none
-       *@postcondition a empty item will create
+       * precondition none
+       *postcondition a empty item will create
      */
     public Item()
     {
@@ -42,8 +42,8 @@ public class Item implements java.io.Serializable{
     /**
      * Constructor. allow controller to create a new item with a name
      * @param n the name of the item
-     * @preconditions: none
-     * @postconditions: a item create with a name "n"
+     * preconditions: none
+     * postconditions: a item create with a name "n"
      */
     //constructors
     public Item (String n){
@@ -58,8 +58,8 @@ public class Item implements java.io.Serializable{
      * @param i the invoice pice of the item
      * @param s the selling price of the item
      * @param q the quantity of the item
-     * @preconditions: none
-     * @postconditions: a item create without picture
+     * preconditions: none
+     * postconditions: a item create without picture
      */
         public Item ( String n, String id, String t, double i, double s, int q)
     {
@@ -82,8 +82,8 @@ public class Item implements java.io.Serializable{
      * @param s the selling price of the item
      * @param q the quantity of the item
      * @param p the picture of the item
-     * @preconditions: none
-     * @postconditions: a item create with picture but without file name
+     * preconditions: none
+     * postconditions: a item create with picture but without file name
      */
     public Item (ImageIcon p, String n, String id, String t, double i, double s, int q)
     {
@@ -107,8 +107,8 @@ public class Item implements java.io.Serializable{
      * @param q the quantity of the item
      * @param p the picture of the item
      * @param f the path of the item picture
-     * @preconditions: none
-     * @postconditions: a item create with picture
+     * preconditions: none
+     * postconditions: a item create with picture
      */
     public Item (ImageIcon p, String n, String id, String t, double i, double s, int q, String f)
     {
