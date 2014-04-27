@@ -272,7 +272,7 @@ public class Customer extends JFrame implements ActionListener {
      * This is a function that displays the specific item's information to the
      * customer window
      *
-     * @param weijie
+     * @param n the name of the item
      */
     private void displayItem(String n) {
 
