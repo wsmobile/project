@@ -71,12 +71,18 @@ public class ShoppingCart {
        total=0;
         for(Item i: shoppingCart)
         {
-//         
+            //calculate the total of all items' selling prices
             total+=i.getSellingPrice()*i.getQuantity();
         }
         return total;
     }
     
+    /**
+     * calculate the total price of the all items
+     * @param n the name of the item
+     * @preconditions: the item with this name exist in shoppingCart list
+     * @postconditions: update the shoppingCart item quantity
+     */
     public static void setShoppingCartItem( String n) {
 
         int j = 0;
