@@ -215,6 +215,7 @@ public class Customer extends JFrame implements ActionListener {
             choz.add(butt);
             final String name = inventory.get(i).getName();
             butt.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
 
                     //call display function
