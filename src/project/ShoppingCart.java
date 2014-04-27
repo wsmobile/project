@@ -6,14 +6,24 @@ import java.util.ArrayList;
 import static project.Inventory.inventory;
 
 /**
- *
- * @author wsmobile
+ * this is a shoppingCart class that serves as a controller
+ * it stores a list of items and provides functions to 
+ * modify the shopppingCart
+ * 
+ * @author weijie
  */
 public class ShoppingCart {
     
+    //holds a list of all items in shoppingCart
     public static ArrayList<Item> shoppingCart = new ArrayList<>();
     public static double total=0;
     
+    /**
+     * add new item to shoppingCart
+     * @param n the name of the item
+     * @preconditions: the item with this name exist in inventory
+     * @postconditions: the item with full information will add to shoppingCart list
+     */
     public static void addShoppingCart(String n) {
         int k=0;
         
@@ -29,7 +39,7 @@ public class ShoppingCart {
                 if (k==1) {
                             setShoppingCartItem(n);
                         } else {
-
+//add item to shoppingCart list
                             shoppingCart.add(new Item(i.getName(), i.getID(), i.getType(),
                                     i.getInvoicePrice(), i.getSellingPrice(), 1));
 
@@ -38,13 +48,24 @@ public class ShoppingCart {
         }
     }
     
+    /**
+     * clear all items inside the shoppingCart
+     * @preconditions: none
+     * @postconditions: shoppingCart will be empty
+     */
     public static void clearShoppingCart()
     {
-        
+        //clear shoppingCart
            shoppingCart.clear();
           
     }
     
+    /**
+     * calculate the total price of the all items
+     * @preconditions: none
+     * @postconditions: total update
+     * @return the total of all items' selling price
+     */
     public static double ShoppingCartTotal()
     {
        total=0;
